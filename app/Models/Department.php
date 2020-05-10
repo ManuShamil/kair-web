@@ -13,4 +13,8 @@ class Department extends Model
     public function info() {
         return $this -> hasMany('App\Models\DepartmentInfo');
     }
+
+    public function treatments() {
+        return $this -> hasMany('App\Models\Treatment');
+    }
 }

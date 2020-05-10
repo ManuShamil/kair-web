@@ -19,7 +19,11 @@ Route::get('/why', 'PagesController@why');
 
 Route::get('/how', 'PagesController@how');
 
-Route::get('/treatments', 'PagesController@treatments');
+Route::get('/departments', 'PagesController@loadDepartments');
+
+Route::get('/treatments/{department_id}', 'PagesController@getTreatments');
+
+Route::get('/{department_name}/{treatment_id}', 'PagesController@getTreatment');
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -27,6 +31,7 @@ Route::get('/welcome', function () {
 
 
 Route::get('/images/department/{file_name}', 'ImagesController@getDepartmentImages');
+Route::get('/images/treatment/{file_name}', 'ImagesController@getTreatmentImage');
 Route::get('/images/why/{file_name}', 'ImagesController@getWhyImages');
 Route::get('/images/how/{file_name}', 'ImagesController@getHowImages');
 Route::get('/images/testimonial/{file_name}', 'ImagesController@getTestimonialImages');

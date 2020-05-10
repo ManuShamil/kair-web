@@ -1592,3 +1592,472 @@
 
 
 /* ^^ BreadCrumb Navigation ^^ */
+
+.treatments-list-container {
+    padding-top: 9rem;
+    padding-bottom: 6rem;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+
+    @media (min-width: 576px) {
+        max-width: 540px;
+    }
+
+    @media (min-width: 768px) {
+        max-width: 720px;
+    }
+
+    @media (min-width: 992px) {
+        max-width: 960px;
+    }
+
+    @media (min-width: 1200px) {
+        max-width: 1170px;
+    }
+
+    .title-wrapper {
+        display: flex;
+        align-items: center;
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+
+    .column {
+        @media (min-width: 576px) {
+            flex: 0 0 calc(100% - 30px);
+            max-width: calc(100% - 30px);
+        }
+
+        @media (min-width: 724px) {
+            flex: 0 0 calc(50% - 30px);
+            max-width: calc(50% - 30px);
+        }
+
+        @media (min-width: 992px) {
+            flex: 0 0 calc(33% - 30px);
+            max-width: calc(33% - 30px);
+        }
+
+
+
+        padding-right: 15px;
+        padding-left: 15px;
+
+        margin-bottom: 3rem;
+        position: relative;
+        width: 100%;
+        min-height: 1px;
+    }
+
+    article {
+        .overlay-effect {
+            position: relative;
+            overflow: hidden;
+
+            .overlay {
+                display: block;
+                z-index: 999;
+                position: absolute;
+                background: center center no-repeat;
+                height: 100%;
+                width: 100%;
+                bottom: 0;
+                left: 0;
+                opacity: 0;
+                background-image: url('/icons/doctor-interface-symbol.png');
+                background-color: #7ace4ccc;
+                transform: rotate(45deg);
+                transition: all 0.3s;
+            }
+            /*
+            .overlay:hover {
+                background-color: #7ace4c96;
+                transform: rotate(0);
+                opacity: 1;
+            }*/
+        }
+
+        .entry-content {
+            box-shadow: 0 4px 12px rgba(33, 44, 55, 0.06);
+            text-align: center;
+            padding: 1.5rem 1.5rem;
+
+            a {
+                text-decoration: none;
+            }
+
+            .entry-title {
+                overflow: hidden;
+                margin-top: 0;
+                flex: 0 0 55%;
+                
+                a {
+                    font-weight: 600;
+                    color: #2f3d4a;
+                    transition: color 0.13s linear;
+                }
+
+                a:hover {
+                    color: #7ace4c;
+                    text-decoration: none;
+                }
+            }
+
+            .entry-info {
+                font-weight: 300;
+                font-size: 1rem;
+                p {
+                    overflow: hidden;
+                    line-height: 1.8;
+                    color: #7d98ad;
+                }
+            }
+        }
+
+        figure {
+            margin: 0;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    .treatment-item {
+        .treatment-item-thumb-wrapper {
+            flex: 0 0 30%;
+            .overlay-effect {
+                position: relative;
+                overflow: hidden;
+
+                .overlay {
+                    display: block;
+                    z-index: 999;
+                    position: absolute;
+                    background: center center no-repeat;
+                    height: 100%;
+                    width: 100%;
+                    bottom: 0;
+                    left: 0;
+                    opacity: 0;
+                    background-image: url('/icons/medical-interface-symbol.png');
+                    background-color: #7ace4ccc;
+                    transform: rotate(45deg);
+                    transition: all 0.3s;
+                }
+
+                /*
+                .overlay:hover {
+                    background-color: #7ace4c96;
+                    transform: rotate(0);
+                    opacity: 1;
+                }*/
+            }
+
+            .treatment-item-image {
+                width: 50%;
+                height: auto;
+            }
+        }
+    }
+
+}
+
+/* ^^ Treatments List View ^^*/
+
+
+
+.related-treatments-container {
+
+    .home-section-header {
+        padding-right: 15%;
+        padding-left: 15%;
+
+        .home-section-title {
+            font-size: 1.6rem;
+            font-weight: 300;
+            margin-bottom: 0;
+            color: #2f3d4a;
+
+            span {
+                font-weight: 600;
+                line-height: 1.2;
+                color: #2f3d4a;
+                font-family: inherit;
+            }
+        }
+
+        .home-section-description {
+            line-height: 1.8;
+            font-size: 0.9rem;
+
+            strong {
+                color: #2f3d4a;
+            }
+        }
+    }
+
+
+    padding-bottom: 6rem;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+
+    @media (min-width: 576px) {
+        max-width: 540px;
+    }
+
+    @media (min-width: 768px) {
+        max-width: 720px;
+    }
+
+    @media (min-width: 992px) {
+        max-width: 960px;
+    }
+
+    @media (min-width: 1200px) {
+        max-width: 1170px;
+    }
+}
+
+
+.treatment-info-container {
+    padding-top: 6rem;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+
+
+    .col-1 {
+        flex: 0 0 calc(25% - 30px);
+        max-width: calc(25% - 30px);
+
+        @media (max-width: 576px) {
+            flex: 0 0 calc(100% - 30px);
+            max-width: calc(100% - 30px);
+        }
+
+        padding-right: 15px;
+        padding-left: 15px;
+
+        margin-bottom: 3rem;
+        position: relative;
+        width: 100%;
+        min-height: 1px;
+
+        .treatment-info {
+            figure {
+                margin: 0;
+                .swipebox {
+                    display: block;
+
+                    @media (max-width: 576px) {
+                        display: flex;
+                        justify-content: center;
+                    }
+
+                    img {
+                        margin-bottom: 2rem;
+                        float: left;
+                        width:0px;
+                        height:0px; 
+                        padding: 50% 50%;
+
+                        @media (max-width: 576px) {
+                            padding: 20%;
+                        }
+
+                        background: url('http://34.93.61.81:3000/uploads/5f93517bb0e8a7a4b8e886fda7a7fb78.jpg');
+                        background-size: cover;
+                        background-repeat: no-repeat;
+                        background-position: center;
+                    }
+                }
+            }
+
+            .treatment-title {
+                color: #2f3d4a;
+                text-align: center;
+                font-size: 1.3rem;
+                margin-bottom: .8rem;
+                font-weight: 500;
+            }
+        
+
+
+        }
+    
+    }
+
+    .col-2 {
+        flex: 0 0 calc(66% - 30px);
+        max-width: calc(66% - 30px);
+
+        @media (max-width: 576px) {
+            flex: 0 0 calc(100% - 30px);
+            max-width: calc(100% - 30px);
+        }
+
+        padding-right: 15px;
+        padding-left: 15px;
+
+        margin-bottom: 3rem;
+        position: relative;
+        width: 100%;
+        min-height: 1px;
+
+        .single-side-content {
+            text-align: left;
+
+            .entry-title {
+                color: #2f3d4a;
+                margin-bottom: 1rem;
+                padding-bottom: 1rem;
+                font-size: 1.5rem;
+                font-weight: 500;
+                border-bottom: 2px solid #ecf1f2;
+            }
+
+            .entry-content {
+                h4 {
+                    margin-bottom: 1rem;
+                    font-family: inherit;
+                    font-weight: 500;
+                    line-height: 1.2;
+                    color: #2f3d4a;
+                    font-size: 1.2rem;
+                }
+
+                h5 {
+                    margin-bottom: 2rem;
+                    font-family: inherit;
+                    font-weight: 500;
+                    line-height: 1.2;
+                    color: #2f3d4a;  
+                    font-size: 0.95rem;
+                }
+
+                p {
+                    margin-bottom: 3rem;
+                    font-weight: 300;
+                    line-height: 1.8;
+                    color: #7d98ad;
+                    font-size: 0.9rem;
+                }
+
+                ul {
+                    list-style: none;
+                    padding-left: 0;
+                    margin-bottom: 2.5rem;
+                    li {
+                        background-image: url("/icons/arrow-list-one-bg.png");
+                        background-repeat: no-repeat;
+                        background-position: 4px 6px;
+                        padding-left: 25px;
+                        margin-bottom: 10px;
+                        line-height: 1.8;
+                        color: #7d98ad;
+                        font-size: 0.9rem;
+                    }
+                }
+            }
+        }
+    }
+
+    .toggle-main {
+        .toggle {
+            margin-bottom: 0.2rem;
+            transition: all 0.5s;
+
+            .toggle-title {
+                cursor: pointer;
+                transition: inherit;
+
+                h3 {
+                    color: #fff;
+                    font-weight: 500;
+                    padding: 1rem 3rem 1rem 2rem;
+                    margin: 0;
+                    font-size: 16px;
+                    line-height: 24px;
+                    position: relative;
+
+                    .fa {
+                        margin-right: 0;
+                        font-size: 18px;
+                        position: absolute;
+                        top: 19px;
+                        right: 19px;
+                    }
+                }
+            }
+
+            .toggle-content {
+                display: block;
+                overflow: hidden;
+                height: 100%;
+                padding: 1rem 15px 1px;
+                transition: visibility 0s, opacity 0.5s linear;
+
+                p {
+                    margin-top: 0;
+                }
+
+
+            }
+
+        }
+    }
+
+
+    .toggle-main .toggle-title {
+        background-color: #007d9e;
+    }
+
+    .toggle-main .toggle-title:hover{
+        background-color: #00718f;
+    }
+
+    .toggle-main .toggle.current .toggle-title {
+        background-color: #7ace4c;
+    }
+
+    .toggle-main .toggle.current .toggle-title:hover {
+        background-color: #65bd34;
+    }
+    
+    @media (min-width: 576px) {
+        max-width: 540px;
+    }
+
+    @media (min-width: 768px) {
+        max-width: 720px;
+    }
+
+    @media (min-width: 992px) {
+        max-width: 960px;
+    }
+
+    @media (min-width: 1200px) {
+        max-width: 1170px;
+    }
+} 
+
+/* ^^Treatments Info View ^^*/
