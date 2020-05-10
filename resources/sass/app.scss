@@ -1118,3 +1118,196 @@
     }
 }
 /* ^^ Department Section ^^*/
+
+.dots {
+    text-align: center;
+    margin-top: 4.5rem;
+    -webkit-tap-highlight-color: transparent;
+    .dot {
+        display: inline-block;
+        zoom: 1;
+
+        span {
+            display: block;
+
+            background: #cbd2d7;
+            border-color: #fff;
+            box-shadow: 0 0 0 1px #cbd2d7;
+
+            width: 0.8rem;
+            height: 0.8rem;
+            margin: .5rem .6rem;
+            border-radius: 50%;
+            border: 2px solid #fff;
+        }
+    }
+
+    .active {
+        span {
+            background: #007d9e;
+        }
+    }
+}
+
+.testimonial-carousel {
+    z-index: 1;
+
+    .stage-outer {
+        position: relative;
+        overflow: hidden;
+
+        .stage {
+            display: flex;
+            transform: translate3d(0px, 0px, 0px);
+            width: 400%;
+            position: relative;
+            .item {
+                width: calc(400%/4);
+                padding: 0 3px 3px;
+                margin-right: 20px;
+
+                .carousel-item {
+                    background-color: #fff;
+                    box-shadow: 0 4px 12px rgba(33, 44, 55, 0.06);
+                    margin-bottom: 5px;
+                    padding: 2.7rem 3.5rem;
+                    border-top: 2px solid #7ace4c;
+
+                    .carousel-item-header /* header */{
+
+                        .item-title /* h3 */ {
+                            margin-top: 0;
+                            margin-bottom: 2rem;
+                            font-size: 1.5rem;
+                            font-weight: 300;
+                            text-align: left;
+                        }
+
+                        .item-text /* p */{
+                            font-size: 0.9rem;
+                            font-weight: 300;
+                            text-align: left;
+                            color: #7d98ad;
+                            line-height: 1.8;
+                        }
+                    }
+
+                    .carousel-item-footer /* footer */ {
+                        display: block;
+
+                        .author-photo {
+                            display: block;
+                            width: auto;
+                            float: left;
+
+                            height: 70px;
+                            width: 70px;
+                            margin-right: 1.2rem;
+                            border-radius: 50%;
+                            
+                        }
+
+                        .author-content {
+                            display: table;
+                            padding-top: 0.1rem;
+                            text-align: left;
+
+                            .author-name {
+                                font-size: 1rem;
+                                font-weight: 400;
+                                margin-bottom: .4rem;
+                            }
+
+                            .author-link {
+                                text-decoration: none;
+                                color: #7d98ad;
+                                font-weight: 300;
+                                font-size: 0.85rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.testimonials-section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    background-color: #fff;
+
+    .testimonials-container {
+        padding-right: 15px;
+        padding-left: 15px;
+        margin: auto;
+
+        @media (min-width: 576px) {
+            max-width: 540px;
+        }
+
+        @media (min-width: 768px) {
+            max-width: 720px;
+        }
+
+        @media (min-width: 992px) {
+            max-width: 960px;
+        }
+
+        @media (min-width: 1200px) {
+            max-width: 1170px;
+        }
+
+        .container-header {
+            opacity: 1;
+            padding-right: 15%;
+            padding-left: 15%;
+            margin-bottom: 4.5rem;
+
+            animation-name: fadeInUp;
+            animation-duration: 4s;
+
+            @keyframes fadeInUp {
+                0% {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+
+                70% {
+                    opacity: 25;
+                    transform: translateY(0);
+                }
+
+                100% {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .section-title {
+                color: #2f3d4a;
+                margin: auto;
+                font-weight: 300;
+                line-height: 1.2;
+
+                span {
+                    font-weight: 600;
+                }
+
+            }
+
+
+            p {
+                font-size: 0.9rem;
+                font-weight: 300;
+                word-spacing: 2px;
+                color: #7d98ad;
+                line-height: 2;
+            }
+        }
+    }
+
+
+}
+
+/* ^^ Testimonials Section ^^ */

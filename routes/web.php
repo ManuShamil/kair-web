@@ -22,7 +22,7 @@ Route::get('/welcome', function () {
 });
 
 
-Route::get('/images/department/{image}', 'ImagesController@getDepartmentImages');
-
+Route::get('/images/department/{file_name}', 'ImagesController@getDepartmentImages');
+Route::get('/images/why/{id}', 'ImagesController@getWhyImages');
 
 Route::get('/admin/departments', 'AdminPagesController@departments');

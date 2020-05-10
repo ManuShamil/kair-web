@@ -2,7 +2,7 @@
 
     
 
-    $department_list = App\Department::all();
+    $department_list = App\Models\Department::all();
 
     for ($i=0; $i<count($department_list); $i++) {
 

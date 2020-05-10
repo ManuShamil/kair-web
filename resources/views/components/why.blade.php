@@ -29,6 +29,10 @@
         $myCards = array_slice($myCards, 0, 3);
     }
 
+    $why_list = App\Models\Why::all();
+
+
+
 ?>
 
 <div class="why-section">
@@ -39,14 +43,14 @@
         </header>
 
         <div class="row">
-            @foreach ($myCards as $card)
+            @foreach ($why_list as $why)
             <div class="column">
                 <article>
-                    <div class="thumb-wrapper"><a><img src="{{ $card -> image}}" alt=""></a></div>
+                    <div class="thumb-wrapper"><a><img src="/images/why/{{ $why -> file_name}}" alt=""></a></div>
                     <div class="content-wrapper">
-                        <h3 class="item-title"> {{ $card -> title }}</h3>
+                        <h3 class="item-title"> {{ $why -> infos[0] -> info }}</h3>
                         <div class="item-content">
-                            <p> {{ $card -> description }}</p>
+                            <p> {{ $why -> infos[0] -> description }}</p>
                         </div>
                     </div>
                 </article>
