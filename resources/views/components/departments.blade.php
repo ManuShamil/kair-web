@@ -31,6 +31,6 @@
     </div>
 
     <div class="button-wrapper">
-        <router-link to="/treatments"></router-link>
+        <a href="/treatments"></a>
     </div>
 </div>

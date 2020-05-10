@@ -9,4 +9,5 @@
     @component('components.why') @endcomponent
     @component('components.testimonials') @endcomponent
     @component('components.calltoaction') @endcomponent
+    @component('components.footer') @endcomponent
 @stop

@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Why KairHealth?')
+@section('title', 'How it Works?')
+
 
 @section('content')
     @component('components.breadnav', ['paths' =>  $paths, 'pageTitle' => $pageTitle ]) @endcomponent
-    @component('components.why') @endcomponent
+    @component('components.how') @endcomponent
     @component('components.calltoaction') @endcomponent
     @component('components.footer') @endcomponent
 @stop
