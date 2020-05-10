@@ -13,11 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', 'PagesController@index');
+
+Route::get('/why', 'PagesController@why');
 
 Route::get('/welcome', function () {
     return view('welcome');
 });
 
+
+Route::get('/images/department/{image}', 'ImagesController@getDepartmentImages');
+
+
+Route::get('/admin/departments', 'AdminPagesController@departments');

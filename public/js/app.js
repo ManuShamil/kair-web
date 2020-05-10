@@ -19342,7 +19342,7 @@ var nav = {
         $('.mobile-menu').toggleClass('open');
       });
       $('body').on('click', function (e) {
-        var isMenuButton = $('.menu-reveal').has(e.target).length == 1 || e.target == $('.menu-reveal').get(0);
+        var isMenuButton = $('.menu-reveal').has(e.target).length == 1 || e.target == $('.menu-reveal').get(0) || $('.menu-expand').hasClass('menu-expand');
         if (isMenuButton) return;
         var menuOpen = $('.mobile-menu').hasClass('open');
 
@@ -19350,6 +19350,26 @@ var nav = {
           $('.mobile-menu').toggleClass('open');
         }
       });
+    }
+  }, {
+    name: 'Collapse Button Watcher',
+    watch: function watch() {
+      var handler = function handler(e) {
+        var me = this;
+        var target = $(e.target).parent().children()[2];
+
+        if ($(target).hasClass('collapsed')) {
+          $(target).css("max-height", "".concat(100 + $(target).children().length * 100, "px"));
+          $(me).html("-");
+        } else {
+          $(target).css("max-height", "0px");
+          $(me).html("+");
+        }
+
+        $(target).toggleClass('collapsed');
+      };
+
+      $('.menu-expand').click(handler);
     }
   }]
 };

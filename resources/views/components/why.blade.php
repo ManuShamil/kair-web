@@ -21,7 +21,13 @@
         new Card("/icons/global.png", "Help with leisure tours", "Besides your treatment, we also help you in arranging leisure trips in order to make your visit to India a holistic experience."),
         new Card("/icons/cutlery.png", "Halal and organic", "KairHealth makes sure that the treatment is 100% herbal based, with use of organic products only. We make sure that the food and services provided are Halal."),
         new Card("/icons/handshake.png", "Services on demand", "We help you to arrange services of interpreters, bystanders and chefs. We also assist you with ticketing, foreign exchange, accommodation, SIM card and inner city transportation.")
-    ]
+    ];
+
+    $route = Request::path();
+
+    if ($route == "/") {
+        $myCards = array_slice($myCards, 0, 3);
+    }
 
 ?>
 
@@ -48,8 +54,10 @@
             @endforeach
         </div>
 
-        <div class="button-wrapper">
-            <a to="/why"></a>
-        </div>
+        @if ($route == '/')
+            <div class="button-wrapper">
+                <a href="/why"></a>
+            </div>
+        @endif
     </div>
 </div>

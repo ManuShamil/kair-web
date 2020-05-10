@@ -20,7 +20,7 @@ const nav = {
 
                 $('body').on('click', function(e){
 
-                    var isMenuButton = $('.menu-reveal').has(e.target).length == 1 || e.target == $('.menu-reveal').get(0)
+                    var isMenuButton = $('.menu-reveal').has(e.target).length == 1 || e.target == $('.menu-reveal').get(0) || $('.menu-expand').hasClass('menu-expand')
 
                     if (isMenuButton)
                         return
@@ -35,6 +35,29 @@ const nav = {
                 });
             }
         },
+        {
+            name: 'Collapse Button Watcher',
+            watch: function() {
+
+                const handler = function(e) {
+
+                    var me = this
+                    var target = $(e.target).parent().children()[2]
+
+                    if ($(target).hasClass('collapsed')) {
+                        $(target).css("max-height", `${100 + $(target).children().length * 100}px` )
+                        $(me).html("-")
+                    } else {
+                        $(target).css("max-height", "0px")
+                        $(me).html("+")
+                    }
+
+                    $(target).toggleClass('collapsed')
+                }
+
+                $('.menu-expand').click(handler)
+            }
+        }
         
     ]
 }

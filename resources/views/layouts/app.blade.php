@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
     
     <div id="app">
-        @component('layouts.components.navbar') @endcomponent
+        @component('components.navbar') @endcomponent
 
         @yield('content')
 

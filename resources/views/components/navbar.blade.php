@@ -106,15 +106,15 @@
             <ul>
                 @foreach ($menuItems as $item)
                     <li>
-                        <a class="{{ $item->isEmpty() == true ? 'max-flex' : '' }}">{{ $item-> text }}</a>
+                        <a href="{{ $item -> path }}" class="{{ $item->isEmpty() == true ? 'max-flex' : '' }}">{{ $item-> text }}</a>
 
                         @if (!($item->isEmpty()))
                         <a class="menu-expand"> + </a>
 
-                        <ul class="sub-menu" >
+                        <ul style="overflow: hidden;max-height: 0px; transition: max-height 0.5s ease-out" class="sub-menu collapsed">
                             @foreach ((array) $item->children as $subitem)
                             <li>
-                                <a> {{ $subitem -> text}} </a>
+                                <a href="{{ $subitem -> path }}"> {{ $subitem -> text}} </a>
                             </li>
                             @endforeach
                         </ul>
