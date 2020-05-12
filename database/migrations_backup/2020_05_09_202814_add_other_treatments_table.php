@@ -50,7 +50,7 @@ class AddOtherTreatmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('treatments');
+        Schema::dropIfExists('treatment_images');
         Schema::dropIfExists('treatment_info');
         Schema::dropIfExists('treatment_description');
     }

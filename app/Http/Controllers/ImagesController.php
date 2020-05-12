@@ -8,6 +8,7 @@ use App\Models\Treatment;
 use App\Models\Why;
 use App\Models\How;
 use App\Models\Testimonial;
+use App\Models\Image;
 
 class ImagesController extends Controller
 {
@@ -90,5 +91,19 @@ class ImagesController extends Controller
         echo $obj;
 
 
+    }
+
+    function getImage($image_id) {
+        
+        $image = Image::where('id',$image_id)->get();
+
+        if (count($image) <= 0)
+            return;
+
+        $obj = $image[0] -> image;
+
+        header('Content-Type: image/png');
+
+        echo $obj;
     }
 }

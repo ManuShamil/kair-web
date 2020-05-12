@@ -30,7 +30,7 @@
                                     <i class="fa fa-plus"></i>
                                 </h3>
                             </div>
-                            <div class="toggle-content">
+                            <div class="toggle-content" style="overflow:hidden; max-height: 0; transition: max-height 0.5s ease-out;">
                                 <p>{{ $description -> first() -> answer }}</p>
                             </div>
 
@@ -42,5 +42,40 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+<div class="related-treatments-container">
+    <header class="home-section-header">
+        <h2 class="home-section-title">Related <span>Treatments</span></h2>
+        <p class="home-section-description">Treatments under <strong>{{ $treatment -> department -> info -> first() -> full_name }}</strong></p>                        
+    </header>
+    <div class="row">
+        @foreach ($treatment -> department -> treatments as $related )
+        <div class="col">
+            <article>
+                <figure class="overlay-effect">
+                    <figure>
+                        <a href="/{{ $related -> department -> dept_id}}/{{ $related -> id }}" title="{{ $related -> titles -> first() -> title }}">
+                            <img width="585" height="500" src="/images/treatment/{{ $related -> file_name }}" style="background-image: url('{{ $related -> file_name }}')" class="attachment-doctor-grid-thumb size-doctor-grid-thumb wp-post-image" alt="">
+                        </a>
+                    </figure>
+                    <a class="overlay" href="/{{ $related -> department -> dept_id}}/{{ $related -> id }}">
+                        <i class="top"></i> 
+                        <i class="bottom"></i>
+                    </a>
+                </figure>
+                <div class="entry-content">
+                    <h3 class="entry-title">
+                        <a href="/{{ $related -> department -> dept_id}}/{{ $related -> id }}">{{ $related -> titles -> first() -> title }}</a>
+                    </h3>
+                    <div class="entry-info">
+                        <a rel="tag">{{ substr($related -> descriptions -> first() -> answer, 0, 150) . '...'}}</a>
+                    </div>
+
+                </div>
+                
+            </article>
+        </div>
+        @endforeach
     </div>
 </div>
