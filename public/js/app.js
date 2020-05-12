@@ -19274,6 +19274,17 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/js/admin.js":
+/*!*******************************!*\
+  !*** ./resources/js/admin.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(document).ready(function () {});
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -19286,6 +19297,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 __webpack_require__(/*! ./nav.js */ "./resources/js/nav.js");
 
 __webpack_require__(/*! ./treatmentInfo.js */ "./resources/js/treatmentInfo.js");
+
+__webpack_require__(/*! ./admin.js */ "./resources/js/admin.js");
 
 /***/ }),
 

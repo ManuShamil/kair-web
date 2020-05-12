@@ -53,24 +53,13 @@ class Fresh extends Migration
         Schema::create('treatments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('department_id');
+            $table->unsignedBigInteger('image_id');
             $table->string('treatment_id');
             $table->timestamps();
         });
 
         Schema::table('treatments', function (Blueprint $table) {
             $table->foreign('department_id')->references('id')->on('departments');
-        });
-
-        Schema::create('treatment_images', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('treatment_id');
-            $table->unsignedBigInteger('image_id');
-            $table->integer('priority');
-            $table->timestamps();
-        });
-
-        Schema::table('treatment_images', function (Blueprint $table) {
-            $table->foreign('treatment_id')->references('id')->on('treatments');
             $table->foreign('image_id')->references('id')->on('images');
         });
 
@@ -93,8 +82,8 @@ class Fresh extends Migration
             $table->unsignedBigInteger('treatment_id');
             $table->string('language');
             $table->integer('priority');
-            $table->string('title');
-            $table->longText('description');
+            $table->longText('question');
+            $table->longText('answer');
             $table->timestamps();
 
         });
@@ -326,7 +315,6 @@ class Fresh extends Migration
         Schema::dropIfExists('department_images');
         Schema::dropIfExists('department_info');
         Schema::dropIfExists('treatments');
-        Schema::dropIfExists('treatment_images');
         Schema::dropIfExists('treatment_info');
         Schema::dropIfExists('treatment_description');
         Schema::dropIfExists('why');

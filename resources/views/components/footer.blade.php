@@ -23,7 +23,7 @@
         new FooterMenuItem("Home", "/", []),
         new FooterMenuItem("Why KairHealth", "/why", []),
         new FooterMenuItem("How it Works", "/how", []),
-        new FooterMenuItem("Treatments", "/treatments", []),
+        new FooterMenuItem("Treatments", "/departments", []),
         new FooterMenuItem("Hospitals", "/hospitals", [
             new FooterMenuItem("Apollo", "/hospital/apollo", [])
         ]),

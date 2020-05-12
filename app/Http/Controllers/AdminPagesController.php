@@ -140,14 +140,14 @@ class AdminPagesController extends Controller
             "department_id" => $name
         ]);
 
-        DepartmentInfo::where('department_id', $name)->where('language','en') -> update([
+        DepartmentInfo::where('department_id', $id)->where('language','en') -> update([
             "full_name" => $en_name
         ]);
 
-        DepartmentInfo::where('department_id', $name)->where('language','ar') -> update([
+        DepartmentInfo::where('department_id', $id)->where('language','ar') -> update([
             "full_name" => $ar_name
         ]);
 
-        return redirect('/admin/departments');
+        return redirect('/admin/department/'.$id.'/edit');
     }
 }

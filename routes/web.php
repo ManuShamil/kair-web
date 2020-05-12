@@ -24,9 +24,9 @@ Route::post('/contact', 'PagesController@postMessage');
 
 Route::get('/departments', 'PagesController@loadDepartments');
 
-Route::get('/treatments/{department_id}', 'PagesController@getTreatments');
+Route::get('/department/{department_name}', 'PagesController@getTreatments');
 
-Route::get('/treatments/{treatment_id}', 'PagesController@getTreatment');
+Route::get('/treatment/{treatment_id}', 'PagesController@getTreatment');
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -41,7 +41,6 @@ Route::get('/images/testimonial/{file_name}', 'ImagesController@getTestimonialIm
 
 Route::get('/images/{image_id}', 'ImagesController@getImage');
 
-Route::get('/admin/departments', 'AdminPagesController@departments');
 Route::get('/admin/department/add', 'AdminPagesController@addDepartment');
 Route::get('/admin/department/{department_id}/edit', 'AdminPagesController@editDepartment');
 Route::post('/admin/department', 'AdminPagesController@postDepartment');

@@ -1,12 +1,17 @@
 <?php
-
+    use App\Models\Department\Department;
     use App\Models\Image;
+    use App\Classes\DepartmentListInfo;
 
     $route = request() -> path;
 
     $isAdmin = true;
-    
-    $departments = App\Models\Department\Department::all();
+
+    $displayData = [];
+
+    foreach(Department::all() as $department) {
+        array_push($displayData, new DepartmentListInfo($department));
+    }
 
 ?>
 
@@ -14,23 +19,25 @@
     <div class="department-container">
         <div class="row">
 
-            @foreach ($departments as $department)
+            @foreach ($displayData as $department)
 
             <div class="column">
                 <article>
                     <div class="thumb-wrapper">
-                        <a href="/treatments/{{ $department -> id }}">
-                            <img src="/images/{{ $department -> image_id }}">
+                        <a href="{{ $department -> page }}">
+                            <img src="{{ $department -> image }}">
                         </a>
                     </div>
                     <div class="content-wrapper">
-                        <h3 class="item-title"><a href="/treatments/{{ $department -> dept_id }}"> {{ $department->info->first()->full_name}}</a></h3>
+                        <h3 class="item-title"><a href="{{ $department -> page }}"> {{ $department->departmentName}}</a></h3>
                         <div class="item-content">
                             <p>No description..</p>
                         </div>
                         @if ($isAdmin)
-                        <div class="edit-icon">
-                            <a href="/admin/department/{{ $department -> id}}/edit">Edit</a>
+                        <div class="edit-wrapper">
+                            <div class="edit-icon">
+                                <a href="{{ $department -> adminPage}}"></a>
+                            </div>
                         </div>
                         @endif
                     </div>

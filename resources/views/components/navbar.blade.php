@@ -24,7 +24,7 @@
         new menuItem("Home", "/", []),
         new menuItem("Why KairHealth", "/why", []),
         new menuItem("How it Works", "/how", []),
-        new menuItem("Treatments", "/treatments", []),
+        new menuItem("Treatments", "/departments", []),
         new menuItem("Hospitals", "/hospitals", [
             new menuItem("Apollo", "/hospital/apollo", [])
         ]),

@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
     
     <div id="app">
-        @component('components.navbar') @endcomponent
 
         @yield('content')
 

@@ -7,7 +7,7 @@ use Illuminate\View\View;
 
 use App\Classes\Path;
 
-use App\Models\Treatment;
+use App\Models\Treatment\Treatment;
 use App\Models\Department\Department;
 
 class PagesController extends Controller
@@ -123,13 +123,14 @@ class PagesController extends Controller
     }
 
     public function getTreatments($department_name) {
-        $department = Department::where('dept_id', $department_name)->get()->first();
+        $department = Department::where('department_id',$department_name)->first();
 
 
-        $department_name = $department -> info[0] -> full_name;
+        $department_name = $department ->info->where('language','en')->first()->full_name;
         
         $paths= array(
-            new Path( $department_name , '/')
+            new Path( $department_name , '/'),
+            new Path( 'Departments' , '/departments/')
         );
 
 
@@ -143,23 +144,23 @@ class PagesController extends Controller
     public function getTreatment($treatment_id) {
 
 
-        $treatment = Treatment::where('id',$treatment_id);
+        $treatment = Treatment::where('treatment_id',$treatment_id)->first();
         
-        $department = $treatment ->get() -> first() -> department;
+        $department = $treatment->department;
 
         $paths= array(
             new Path(
-                $treatment -> get() -> first()-> titles -> first() -> title, 
+                $treatment -> info -> where('language','en')->first()->full_name, 
                 ''
             ),new Path(
-                $department ->info -> first() -> full_name ,
-                "/treatments/" . $department -> dept_id
+                $department->info->where('language','en')->first()->full_name,
+                "/department/". $department -> department_id
             )
         );
 
         return view('pages.treatment')->with([
             'paths' => $paths, 
-            'pageTitle' => $treatment -> get() -> first()-> titles -> first() -> title,
+            'pageTitle' => $treatment -> info -> where('language','en')->first()->full_name,
             'treatment' => $treatment
         ]);
     }

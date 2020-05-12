@@ -10,8 +10,4 @@ class DepartmentInfo extends Model
     public function department() {
         return $this -> belongsTo('App\Models\Department\Department');
     }
-
-    public function scopeEn($query) {
-        return $query -> where('language', 'en');
-    }
 }

@@ -2580,6 +2580,32 @@ html {
 
 /* ^^ Contact Form View ^^*/
 
+.edit-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.edit-wrapper .edit-icon {
+  background-color: #7ace4c;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.edit-wrapper .edit-icon a {
+  background-position: center;
+  background: url("/icons/edit-tools.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: block;
+  height: 1rem;
+  width: 1rem;
+  border-radius: 10%;
+}
+
+.edit-icon:hover {
+  background-color: #60b532;
+}
+
 .admin-form {
   margin: auto;
   padding: 5rem;
@@ -2697,6 +2723,30 @@ html {
 .admin-form form textarea:focus {
   color: #7d98ad;
   border-color: #e0e0e0;
+}
+
+.admin-add {
+  right: 1%;
+  position: absolute;
+}
+
+.admin-add a {
+  display: inline-block;
+  font-size: 1.5rem;
+  text-align: center;
+  background-color: #7ace4c;
+  color: #fff;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  transition: all 0.15s ease-in-out;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.admin-add a:hover {
+  background-color: #60b532;
+  color: #fff;
 }
 
 /* ^^ Admin Form ^^ */
