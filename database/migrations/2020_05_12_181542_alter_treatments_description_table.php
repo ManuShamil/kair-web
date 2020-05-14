@@ -16,8 +16,6 @@ class AlterTreatmentsDescriptionTable extends Migration
         Schema::table('treatment_description', function (Blueprint $table) {
             $table->renameColumn('title','question');
             $table->renameColumn('description','answer');
-$
-            
         });
 
         Schema::table('treatment_description', function (Blueprint $table) {

@@ -145,7 +145,6 @@ class Fresh extends Migration
         Schema::create('hows', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('image_id');
-            $table->string('file_name')->default('');
 
             $table->timestamps();
             
@@ -184,7 +183,6 @@ class Fresh extends Migration
             $table->id();
             $table->unsignedBigInteger('image_id');
             $table->mediumText('title');
-            $table->string('file_name');
             $table->timestamps();
         });
 
@@ -203,22 +201,22 @@ class Fresh extends Migration
             $table->foreign('location_id')->references('id')->on('locations');
         });
 
-        Schema::create('hospital_treatments', function (Blueprint $table) {
+        Schema::create('hospital_departments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('hospital_id'); //foreign
-            $table->unsignedBigInteger('treatment_id'); //foreign
+            $table->unsignedBigInteger('department_id'); //foreign
             $table->timestamps();
         });
 
-        Schema::table('hospital_treatments', function (Blueprint $table) {
+        Schema::table('hospital_departments', function (Blueprint $table) {
             $table->foreign('hospital_id')->references('id')->on('hospitals');
+            $table->foreign('department_id')->references('id')->on('departments');
         });
 
         Schema::create('hospital_images', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('hospital_id'); //foreign
             $table->unsignedBigInteger('image_id');
-            $table->string('file_name');
             $table->timestamps();
         });
 
@@ -230,13 +228,13 @@ class Fresh extends Migration
         Schema::create('hospital_accreditations', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('hospital_id'); //foreign
-            $table->unsignedBigInteger('accreditation'); //foreign
+            $table->unsignedBigInteger('accreditation_id'); //foreign
             $table->timestamps();
         });
 
         Schema::table('hospital_accreditations', function (Blueprint $table) {
             $table->foreign('hospital_id')->references('id')->on('hospitals');
-            $table->foreign('accreditation')->references('id')->on('accreditations');
+            $table->foreign('accreditation_id')->references('id')->on('accreditations');
         });
 
         Schema::create('hospital_info', function (Blueprint $table) {
@@ -324,7 +322,7 @@ class Fresh extends Migration
         Schema::dropIfExists('hows');
         Schema::dropIfExists('how_info');
         Schema::dropIfExists('hospitals');
-        Schema::dropIfExists('hospital_treatments');
+        Schema::dropIfExists('hospital_departments');
         Schema::dropIfExists('hospital_images');
         Schema::dropIfExists('hospital_accreditations');
         Schema::dropIfExists('hospital_info');

@@ -19281,7 +19281,18 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$(document).ready(function () {});
+$(document).ready(function () {
+  var dom = "\n    <div style=\"text-align: left;\" class=\"description\">\n        <h2>Description </h2>\n        <label for=\"question[]\">\n            <input type=\"text\" name=\"question[]\" placeholder=\"Question in English\">\n        </label>\n        <label for=\"answer[]\">\n            <textarea type=\"text\" name=\"answer[]\" placeholder=\"Answer in English\"></textarea>\n        </label>\n        <label for=\"question_ar[]\">\n            <input type=\"text\" name=\"question_ar[]\" placeholder=\"Question in Arabic\">\n        </label>\n        <label for=\"answer_ar[]\">\n            <textarea type=\"text\" name=\"answer_ar[]\" placeholder=\"Answer in Arabic\"></textarea>\n        </label>\n        <div class=\"admin-add remove-desc\">\n            <a>-</a>\n        </div>\n        <div class=\"admin-add add-desc\" style=\"right: 10%;\">\n            <a>+</a>\n        </div>\n    </div>\n\n    ";
+  $('#description_slot').on('click', '.add-desc', function (e) {
+    var parent = $(e.target).parent();
+    parent.after(dom);
+  });
+  $('#description_slot').on('click', '.remove-desc', function (e) {
+    var target = $(e.target).parent().parent();
+    console.log(target);
+    target.remove();
+  });
+});
 
 /***/ }),
 

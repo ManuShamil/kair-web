@@ -28,6 +28,8 @@ Route::get('/department/{department_name}', 'PagesController@getTreatments');
 
 Route::get('/treatment/{treatment_id}', 'PagesController@getTreatment');
 
+Route::get('/hospitals', 'PagesController@hospitals');
+
 Route::get('/welcome', function () {
     return view('welcome');
 });
@@ -45,3 +47,8 @@ Route::get('/admin/department/add', 'AdminPagesController@addDepartment');
 Route::get('/admin/department/{department_id}/edit', 'AdminPagesController@editDepartment');
 Route::post('/admin/department', 'AdminPagesController@postDepartment');
 Route::put('/admin/department', 'AdminPagesController@updateDepartment');
+
+Route::get('/admin/{department_id}/treatment/add', 'AdminPagesController@addTreatment');
+Route::get('/admin/treatment/{treatment_id}/edit', 'AdminPagesController@editTreatment');
+Route::post('/admin/{department_id}/treatment', 'AdminPagesController@postTreatment');
+Route::put('/admin/treatment/{treatment_id}', 'AdminPagesController@updateTreatment');

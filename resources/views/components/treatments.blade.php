@@ -8,6 +8,8 @@
     foreach ($treatments as $treatment) {
         array_push($data, new TreatmentListInfo($treatment));
     }
+
+    $isAdmin = true;
 ?>
 
 <div class="treatments-list-container">
@@ -33,9 +35,25 @@
                     <div class="entry-info">
                         <p>{{ $treatment->truncated_desc . '...'}}</p>
                     </div>
+
+                    @if ($isAdmin)
+                    <div class="edit-wrapper">
+                        <div class="edit-icon">
+                            <a href="/admin/treatment/{{ $treatment -> treatment_id }}/edit"></a>
+                        </div>
+                    </div>
+                    @endif
                 </div>
             </article>
         </div>
         @endforeach
     </div>
+
+    @if ($isAdmin)
+        <div class="admin-add">
+            <a href="/admin/{{$department->id}}/treatment/add">+</a>
+        </div>
+    @endif
+    
 </div>
+

@@ -2500,6 +2500,10 @@
 
     form {
 
+        .description {
+            padding: 2rem;
+        }
+
         .button-wrapper {
             margin-top: 2rem;
             input {
@@ -2579,6 +2583,12 @@
 }
 
 .admin-add {
+    right: 1%;
+    position: absolute;
+    font-weight: bold;
+}
+
+.admin-remove {
     right: 1%;
     position: absolute;
 }

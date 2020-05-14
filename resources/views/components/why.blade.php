@@ -1,30 +1,33 @@
 <?php
+    use App\Classes\WhyListInfo;
+
     $route = Request::path();
 
-    $why_list = App\Models\Why::all();
+    $why_list = App\Models\Why\Why::all();
 
-    /*if ($route == "/") {
-        $why_list = array_slice($why_list, 0, 3);
-    }*/
 
+    $displayData = [];
+    foreach($why_list as $why) {
+        array_push($displayData, new WhyListInfo($why));
+    }
 ?>
 
 <div class="why-section">
     <div class="why-container">
         <header>
-            <h2 class="section-title">Why <span>KairHealth</span>?</h2>
+            <h2 class="section-title">Why KairHealth?</h2>
             <p><span>KairHealth</span> helps you arrange the best health care solutions in India. </p>
         </header>
 
         <div class="row">
-            @foreach ($why_list as $why)
+            @foreach ($displayData as $data)
             <div class="column">
                 <article>
-                    <div class="thumb-wrapper"><a><img src="/images/why/{{ $why -> file_name}}" alt=""></a></div>
+                    <div class="thumb-wrapper"><a><img src="{{ $data->image }}" alt=""></a></div>
                     <div class="content-wrapper">
-                        <h3 class="item-title"> {{ $why -> infos[0] -> info }}</h3>
+                        <h3 class="item-title"> {{ $data -> info }}</h3>
                         <div class="item-content">
-                            <p> {{ $why -> infos[0] -> description }}</p>
+                            <p> {{ $data -> description }}</p>
                         </div>
                     </div>
                 </article>
@@ -34,7 +37,7 @@
 
         @if ($route == '/')
             <div class="button-wrapper">
-                <a href="/why"></a>
+                <a href="/how"></a>
             </div>
         @endif
     </div>

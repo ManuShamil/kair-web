@@ -2635,6 +2635,10 @@ html {
   }
 }
 
+.admin-form form .description {
+  padding: 2rem;
+}
+
 .admin-form form .button-wrapper {
   margin-top: 2rem;
 }
@@ -2726,6 +2730,12 @@ html {
 }
 
 .admin-add {
+  right: 1%;
+  position: absolute;
+  font-weight: bold;
+}
+
+.admin-remove {
   right: 1%;
   position: absolute;
 }

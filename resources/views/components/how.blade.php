@@ -1,12 +1,15 @@
 <?php
+    use App\Classes\HowListInfo;
+
     $route = Request::path();
 
-    $how_list = App\Models\How::all();
+    $how_list = App\Models\How\How::all();
 
-    /*if ($route == "/") {
-        $how_list = array_slice($how_list, 0, 3);
-    }*/
 
+    $displayData = [];
+    foreach($how_list as $how) {
+        array_push($displayData, new HowListInfo($how));
+    }
 ?>
 
 <div class="why-section">
@@ -17,14 +20,14 @@
         </header>
 
         <div class="row">
-            @foreach ($how_list as $how)
+            @foreach ($displayData as $data)
             <div class="column">
                 <article>
-                    <div class="thumb-wrapper"><a><img src="/images/how/{{ $how -> file_name}}" alt=""></a></div>
+                    <div class="thumb-wrapper"><a><img src="{{ $data->image }}" alt=""></a></div>
                     <div class="content-wrapper">
-                        <h3 class="item-title"> {{ $how -> infos[0] -> info }}</h3>
+                        <h3 class="item-title"> {{ $data -> info }}</h3>
                         <div class="item-content">
-                            <p> {{ $how -> infos[0] -> description }}</p>
+                            <p> {{ $data -> description }}</p>
                         </div>
                     </div>
                 </article>

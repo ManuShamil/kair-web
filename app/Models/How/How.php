@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\How;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -8,7 +8,7 @@ class How extends Model
 {
     protected $table = "hows";
 
-    function infos() {
-        return $this -> hasMany('App\Models\HowInfo');
+    public function info(){
+        return $this->hasMany('App\Models\How\HowInfo');
     }
 }
