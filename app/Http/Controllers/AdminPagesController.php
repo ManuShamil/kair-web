@@ -385,7 +385,7 @@ class AdminPagesController extends Controller
         $newInfo_AR -> save();
         
 
-        return redirect('/admin/departments');
+        return redirect('/departments');
     }
 
     public function postHospital(Request $request) {
@@ -498,22 +498,24 @@ class AdminPagesController extends Controller
         $accreditations = $request->accreditations;
         HospitalAccreditation::where('hospital_id',$id)->delete();
 
-        foreach($accreditations as $accreditation) {
-            $newHosAccr = new HospitalAccreditation();
-            $newHosAccr->hospital_id=$id;
-            $newHosAccr->accreditation_id=$accreditation;
-            $newHosAccr->save();
-        }
+        if ($accreditations != null)
+            foreach($accreditations as $accreditation) {
+                $newHosAccr = new HospitalAccreditation();
+                $newHosAccr->hospital_id=$id;
+                $newHosAccr->accreditation_id=$accreditation;
+                $newHosAccr->save();
+            }
 
         $departments = $request->departments;
         HospitalDepartment::where('hospital_id',$id)->delete();
 
-        foreach($departments as $department) {
-            $newHosDept = new HospitalDepartment();
-            $newHosDept->hospital_id=$id;
-            $newHosDept->department_id=$department;
-            $newHosDept->save();
-        }
+        if ($departments != null)
+            foreach($departments as $department) {
+                $newHosDept = new HospitalDepartment();
+                $newHosDept->hospital_id=$id;
+                $newHosDept->department_id=$department;
+                $newHosDept->save();
+            }
 
         $en_infrastructures = $request->en_infrastructure;
         $ar_infrastructures = $request->ar_infrastructure;
@@ -524,13 +526,13 @@ class AdminPagesController extends Controller
             $newInfraEN = new HospitalInfrastructure();
             $newInfraEN->hospital_id=$id;
             $newInfraEN->language="en";
-            $newInfraEN->infrastructure=$en_infrastructures[$i];
+            $newInfraEN->infrastructure= isset($en_infrastructures[$i]) ? $en_infrastructures[$i] : ""; 
             $newInfraEN->save();
 
             $newInfraAR = new HospitalInfrastructure();
             $newInfraAR->hospital_id=$id;
             $newInfraAR->language="ar";
-            $newInfraAR->infrastructure=$ar_infrastructures[$i];
+            $newInfraAR->infrastructure= isset($ar_infrastructures[$i]) ? $ar_infrastructures[$i] : ""; 
             $newInfraAR->save();
         }
 
@@ -543,13 +545,13 @@ class AdminPagesController extends Controller
             $newAboutEN = new HospitalAbout();
             $newAboutEN->hospital_id=$id;
             $newAboutEN->language="en";
-            $newAboutEN->about=$en_abouts[$i];
+            $newAboutEN->about=isset($en_abouts[$i]) ? $en_abouts[$i] : ""; 
             $newAboutEN->save();
 
             $newAboutAR = new HospitalAbout();
             $newAboutAR->hospital_id=$id;
             $newAboutAR->language="ar";
-            $newAboutAR->about=$ar_abouts[$i];
+            $newAboutAR->about=isset($ar_abouts[$i]) ? $ar_abouts[$i] : ""; 
             $newAboutAR->save();
         }
 
@@ -562,13 +564,13 @@ class AdminPagesController extends Controller
             $newSpecialityEN = new HospitalSpeciality();
             $newSpecialityEN->hospital_id=$id;
             $newSpecialityEN->language="en";
-            $newSpecialityEN->speciality=$en_specialities[$i];
+            $newSpecialityEN->speciality=isset($en_specialities[$i]) ? $en_specialities[$i] : ""; 
             $newSpecialityEN->save();
 
             $newSpecialityAR = new HospitalSpeciality();
             $newSpecialityAR->hospital_id=$id;
             $newSpecialityAR->language="ar";
-            $newSpecialityAR->speciality=$ar_specialities[$i];
+            $newSpecialityAR->speciality=isset($ar_specialities[$i]) ? $ar_specialities[$i] : ""; 
             $newSpecialityAR->save();
         }
 
