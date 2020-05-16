@@ -266,7 +266,7 @@ class Fresh extends Migration
             $table->id();
             $table->unsignedBigInteger('hospital_id'); //foreign
             $table->string('language');
-            $table->longText('infrastructure');
+            $table->longText('infrastructure')->default('');
             $table->timestamps();
         });
 
@@ -279,7 +279,7 @@ class Fresh extends Migration
             $table->id();
             $table->unsignedBigInteger('hospital_id'); //foreign
             $table->string('language');
-            $table->longText('about');
+            $table->longText('about')->default('');
             $table->timestamps();
         });
 
@@ -291,7 +291,7 @@ class Fresh extends Migration
             $table->id();
             $table->unsignedBigInteger('hospital_id'); //foreign
             $table->string('language');
-            $table->longText('speciality');
+            $table->longText('speciality')->default('');
             $table->timestamps();
         });
 

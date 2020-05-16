@@ -3,7 +3,7 @@
     use App\Models\Image;
     use App\Classes\DepartmentListInfo;
 
-    $route = request() -> path;
+    $route = request() -> path();
 
     $isAdmin = true;
 
@@ -55,8 +55,10 @@
     @endif
 
     @if ($isAdmin)
+        @if($route != '/')
         <div class="admin-add">
             <a href="/admin/department/add">+</a>
         </div>
+        @endif
     @endif
 </div>

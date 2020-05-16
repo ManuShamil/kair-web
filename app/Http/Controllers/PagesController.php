@@ -7,6 +7,7 @@ use Illuminate\View\View;
 
 use App\Classes\Path;
 
+use App\Models\Hospital\Hospital;
 use App\Models\Treatment\Treatment;
 use App\Models\Department\Department;
 
@@ -105,6 +106,40 @@ class PagesController extends Controller
                 'success' => true
             ]);
         }
+    }
+
+    public function getHospitals() {
+
+        $paths= array(
+            new Path('Hospitals', '/hospitals')
+        );
+
+        return view('pages.hospitals')->with([
+            'paths' => $paths, 
+            'pageTitle' => "Hospitals Offered"
+        ]);
+    }
+
+    public function getHospital($hospital_id) {
+
+
+        $hospital = Hospital::find($hospital_id);
+
+        $paths= array(
+            new Path(
+                $hospital->info->where('language','en')->first()->title,
+                ''
+            ),new Path(
+                "Hospitals",
+                "/hospitals"
+            )
+        );
+
+        return view('pages.hospital')->with([
+            'paths' => $paths, 
+            'pageTitle' => $hospital->info->where('language','en')->first()->title,
+            'hospital' => $hospital
+        ]);
     }
 
     public function loadDepartments() {

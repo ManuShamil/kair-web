@@ -19292,6 +19292,49 @@ $(document).ready(function () {
     console.log(target);
     target.remove();
   });
+  $('#addaccr').click(function (e) {
+    var text = $('#chosen_accr option:selected').text();
+    var value = $('#chosen_accr').val();
+    var target = $(e.target).parent().parent().parent().children()[0];
+    $(target).append("\n            <div style=\"display: flex;\">\n                <input type=\"hidden\" value=\"".concat(value, "\" name=\"accreditations[]\" readonly>\n                <input type=\"text\" value=\"").concat(text, "\" readonly>\n                <div class=\"admin-add remove-tag\" style=\"position: inherit;\">\n                    <a>-</a>\n                </div>\n            </div>\n        "));
+  });
+  $('#chosen_accr').parent().parent().on('click', '.remove-tag', function (e) {
+    $(e.target).parent().parent().remove();
+  });
+  $('#adddept').click(function (e) {
+    var text = $('#chosen_dept option:selected').text();
+    var value = $('#chosen_dept').val();
+    console.log($(e.target).parent().parent().parent().children()[0]);
+    var target = $(e.target).parent().parent().parent().children()[0];
+    $(target).append("\n            <div style=\"display: flex;\">\n                <input type=\"hidden\" value=\"".concat(value, "\" name=\"departments[]\" readonly>\n                <input type=\"text\" value=\"").concat(text, "\" readonly>\n                <div class=\"admin-add remove-tag\" style=\"position: inherit;\">\n                    <a>-</a>\n                </div>\n            </div>\n        "));
+  });
+  $('#chosen_dept').parent().parent().on('click', '.remove-tag', function (e) {
+    $(e.target).parent().parent().remove();
+  });
+  $('#infras').on('click', '.addinfra', function (e) {
+    var en = $(e.target).parent().parent().children().eq(0).children().eq(0).val();
+    var ar = $(e.target).parent().parent().children().eq(1).children().eq(0).val();
+    $(e.target).parent().parent().before("\n            <div style=\"display:flex;\">\n                <label for=\"en_infrastructure[]\" style=\"flex: 0 0 40%;\">\n                    <textarea name=\"en_infrastructure[]\" type=\"text\" placeholder=\"Hospital Infrastructure (EN)\">".concat(en, "</textarea>\n                </label>\n                <label for=\"ar_infrastructure[]\" style=\"flex: 0 0 40%;\">\n                    <textarea name=\"ar_infrastructure[]\" type=\"text\" placeholder=\"Hospital Infrastructure (AR)\">").concat(ar, "</textarea>\n                </label>\n                <div style=\"position: inherit;\" class=\"admin-add addinfra\">\n                    <a>+</a>\n                </div>\n                <div style=\"position: inherit;\" class=\"admin-add remove-infra\">\n                    <a>-</a>\n                </div>\n            </div>\n        "));
+  });
+  $('#infras').on('click', '.remove-infra', function (e) {
+    $(e.target).parent().parent().remove();
+  });
+  $('#abouts').on('click', '.add-about', function (e) {
+    var en = $(e.target).parent().parent().children().eq(0).children().eq(0).val();
+    var ar = $(e.target).parent().parent().children().eq(1).children().eq(0).val();
+    $(e.target).parent().parent().after("\n            <div style=\"display:flex;\">\n                <label for=\"en_about[]\" style=\"flex: 0 0 40%;\">\n                    <textarea name=\"en_about[]\" type=\"text\" placeholder=\"Hospital About (EN)\">".concat(en, "</textarea>\n                </label>\n                <label for=\"ar_about[]\" style=\"flex: 0 0 40%;\">\n                    <textarea name=\"ar_about[]\" type=\"text\" placeholder=\"Hospital About (AR)\">").concat(ar, "</textarea>\n                </label>\n                <div style=\"position: inherit;\" class=\"admin-add add-about\">\n                    <a>+</a>\n                </div>\n                <div style=\"position: inherit;\" class=\"admin-add remove-about\">\n                    <a>-</a>\n                </div>\n            </div>\n        "));
+  });
+  $('#abouts').on('click', '.remove-about', function (e) {
+    $(e.target).parent().parent().remove();
+  });
+  $('#specialities').on('click', '.add-speciality', function (e) {
+    var en = $(e.target).parent().parent().children().eq(0).children().eq(0).val();
+    var ar = $(e.target).parent().parent().children().eq(1).children().eq(0).val();
+    $(e.target).parent().parent().after("\n            <div style=\"display:flex;\">\n                <label for=\"en_speciality[]\" style=\"flex: 0 0 40%;\">\n                    <textarea name=\"en_speciality[]\" type=\"text\" placeholder=\"Hospital Speciality (EN)\">".concat(en, "</textarea>\n                </label>\n                <label for=\"ar_speciality[]\" style=\"flex: 0 0 40%;\">\n                    <textarea name=\"ar_speciality[]\" type=\"text\" placeholder=\"Hospital Speciality (AR)\">").concat(ar, "</textarea>\n                </label>\n                <div style=\"position: inherit;\" class=\"admin-add add-speciality\">\n                    <a>+</a>\n                </div>\n                <div style=\"position: inherit;\" class=\"admin-add remove-speciality\">\n                    <a>-</a>\n                </div>\n            </div>\n        "));
+  });
+  $('#specialities').on('click', '.remove-speciality', function (e) {
+    $(e.target).parent().parent().remove();
+  });
 });
 
 /***/ }),

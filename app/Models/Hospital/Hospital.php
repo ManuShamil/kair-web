@@ -9,7 +9,7 @@ class Hospital extends Model
     protected $table = "hospitals";
 
     public function location() {
-        return $this->hasOne('App\Models\Location');
+        return $this->belongsTo('App\Models\Location');
     }
 
     public function info() {
@@ -29,7 +29,7 @@ class Hospital extends Model
     }
 
     public function images() {
-        return $this->hasMany('App\Models\Hospital\HospitalImages');
+        return $this->hasMany('App\Models\Hospital\HospitalImage');
     }
 
     public function specialities() {
@@ -40,4 +40,7 @@ class Hospital extends Model
         return $this->hasMany('App\Models\Hospital\HospitalDepartment');
     }
 
+    public function infrastructures() {
+        return $this->hasMany('App\Models\Hospital\HospitalInfrastructure');
+    }
 }

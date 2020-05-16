@@ -86,6 +86,27 @@
 
                 <div id="description_slot">
                     <h2>Descriptions:</h2>
+                    @if(count($descriptionDataEN) <=0 )
+                    <div style="text-align: left;" class="description">
+                        <h2>Description </h2>
+                        <label for="question[]">
+                            <input type="text" name="question[]" placeholder="Question in English">
+                        </label>
+                        <label for="answer[]">
+                            <textarea type="text" name="answer[]" placeholder="Answer in English"></textarea>
+                        </label>
+                        <label for="question_ar[]">
+                            <input type="text" name="question_ar[]" placeholder="Question in Arabic">
+                        </label>
+                        <label for="answer_ar[]">
+                            <textarea type="text" name="answer_ar[]" placeholder="Answer in Arabic"></textarea>
+                        </label>
+                        <div class="admin-add add-desc" style="right: 10%;">
+                            <a>+</a>
+                        </div>
+                    </div>
+                    @endif
+
                     @for($i=0; $i< count($descriptionDataEN); $i++)
                     <div style="text-align: left;" class="description">
                         <h2>Description </h2>

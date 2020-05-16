@@ -28,7 +28,8 @@ Route::get('/department/{department_name}', 'PagesController@getTreatments');
 
 Route::get('/treatment/{treatment_id}', 'PagesController@getTreatment');
 
-Route::get('/hospitals', 'PagesController@hospitals');
+Route::get('/hospital/{hospital_id}', 'PagesController@getHospital');
+Route::get('/hospitals', 'PagesController@getHospitals');
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -52,3 +53,18 @@ Route::get('/admin/{department_id}/treatment/add', 'AdminPagesController@addTrea
 Route::get('/admin/treatment/{treatment_id}/edit', 'AdminPagesController@editTreatment');
 Route::post('/admin/{department_id}/treatment', 'AdminPagesController@postTreatment');
 Route::put('/admin/treatment/{treatment_id}', 'AdminPagesController@updateTreatment');
+
+Route::get('/admin/hospital/add', 'AdminPagesController@addHospital');
+Route::post('/admin/hospital', 'AdminPagesController@postHospital');
+Route::get('/admin/hospital/{hospital_id}/edit', 'AdminPagesController@editHospital');
+Route::put('/admin/hospital/{hospital_id}', 'AdminPagesController@updateHospital');
+
+Route::get('/admin/accreditation/add', 'AdminPagesController@addAccreditation');
+Route::post('/admin/accreditation', 'AdminPagesController@postAccreditation');
+Route::get('/admin/accreditation/{accreditation_id}/edit', 'AdminPagesController@editAccreditation');
+Route::put('/admin/accreditation/{accreditation_id}', 'AdminPagesController@updateAccreditation');
+
+Route::get('/admin/location/add', 'AdminPagesController@addLocation');
+Route::post('/admin/location', 'AdminPagesController@postLocation');
+Route::get('/admin/location/{location_id}/edit', 'AdminPagesController@editLocation');
+Route::put('/admin/location/{location_id}', 'AdminPagesController@updateLocation');
