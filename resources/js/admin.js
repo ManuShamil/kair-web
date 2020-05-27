@@ -162,4 +162,5 @@ $(document).ready(function() {
     $('#specialities').on('click','.remove-speciality', function(e){
         $(e.target).parent().parent().remove()
     })
+
 })

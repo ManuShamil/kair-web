@@ -67,7 +67,7 @@ class HospitalInfo {
         $this->image= "/images/" . $hospital->images->first()->image_id;
         $this->location= $hospital->location->en_location;
         $this->address=$hospital->address->where('language','en')->first()->address;
-        $this->landmark=$hospital->address->where('language','en')->first()->landmark;
+        $this->landmark=$hospital->address->where('language','en')->first()->land_mark;
 
         $this->page= "/hospital/" . $hospital->id;
 

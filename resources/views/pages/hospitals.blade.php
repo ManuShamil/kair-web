@@ -6,6 +6,6 @@
 @section('content')
     @component('components.navbar') @endcomponent
     @component('components.breadnav', ['paths' =>  $paths, 'pageTitle' => $pageTitle ]) @endcomponent
-    @component('components.hospitals') @endcomponent
+    @component('components.hospitals', [ 'hospitals' => $hospitals ]) @endcomponent
     @component('components.footer') @endcomponent
 @stop

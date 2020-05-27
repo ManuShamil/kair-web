@@ -38,9 +38,6 @@
     <div>   
         <a class="site-logo" href="/"></a>
     </div>
-    <div class="caption-container">
-        <h1>Treatment in India made easy...</h1>
-    </div>
     <div class="contact-container">
         <div class="phone">
             <svg class="icon-mail" version="1.1" width="34px" height="34px"  xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" >			
@@ -126,10 +123,12 @@
     </div>
 
     <div class="search-form">
-        <input type="text" placeholder="Search..">
-        <div class="button-wrapper">
-            <a>_</a>
-        </div>
+        <form method="GET" action="/hospitals" style="display: flex;">
+            <input name="hospital" type="text" placeholder="Search..">
+            <div class="button-wrapper">
+                <button type="submit">_</button>
+            </div>
+        </form>
     </div>
 
 </div>

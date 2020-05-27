@@ -21,7 +21,7 @@
             <div class="stage-outer">
                 <div class="stage">
                     @foreach($displayData as $testimonial)
-                        <div class="item" style="flex: 0 0 12.5%;">
+                        <div class="item">
                             <div class="carousel-item">
                                 <header class="carousel-item-header">
                                     <h3 class="item-title">{{ $testimonial -> name }}</h3>
@@ -42,3 +42,17 @@
         </div>
     </div>
 </div>
+
+<style>
+    .item {
+        flex: 0 0 12.5%;
+
+    }
+
+    @media (max-width: 992px) {
+        .item {
+            flex : 0 0 25%;
+        }
+    }
+
+</style>

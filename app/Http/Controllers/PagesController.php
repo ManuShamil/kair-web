@@ -8,8 +8,45 @@ use Illuminate\View\View;
 use App\Classes\Path;
 
 use App\Models\Hospital\Hospital;
+use App\Models\Hospital\HospitalInfo;
 use App\Models\Treatment\Treatment;
+use App\Models\Treatment\TreatmentInfo;
 use App\Models\Department\Department;
+
+class Search {
+    public $treatmentSearch = "";
+    public $hospitalSearch = "";
+    public function __construct($request) {
+        $this->treatmentSearch = $request->treatment ?? '';
+        $this->hospitalSearch = $request->hospital ?? '';
+    }
+
+    public function searchTreatment($hospitals) {
+        $treatment = TreatmentInfo::query()->where('language','en')->where('full_name','like','%'.$this->treatmentSearch.'%')->get()->first();
+        if (!$treatment)
+            return [];
+        $filteredHospitals = $treatment->treatment->department->hospitals->pluck('hospital_id')->toArray();
+
+        return $hospitals->whereIn('id',$filteredHospitals);
+    }
+
+    public function searchHospital($hospitals) {
+    
+        $infos = HospitalInfo::query()->where('language','en')->where('title','like','%'.$this->hospitalSearch.'%')->get();
+
+        if (!$hospitals)
+            return [];
+
+        if (count($hospitals) <= 0) {
+            return [];
+        }
+
+
+        $filteredHospitals = $infos->pluck('hospital_id')->toArray();
+
+        return $hospitals->whereIn('id',$filteredHospitals);
+    }
+}
 
 class PagesController extends Controller
 {
@@ -108,15 +145,41 @@ class PagesController extends Controller
         }
     }
 
-    public function getHospitals() {
+    public function getHospitals(Request $request) {
 
         $paths= array(
             new Path('Hospitals', '/hospitals')
         );
 
+        $search = new Search($request);
+
+        $hospitals = Hospital::all();
+
+        if ($search->treatmentSearch != '') {
+            $hospitals = $search->searchTreatment($hospitals);
+
+
+            if (!$hospitals)
+                $hospitals = [];
+            else
+                $hospitals = $hospitals->all();
+        }
+
+        if ($search->hospitalSearch != '') {
+            $hospitals = $search->searchHospital($hospitals);
+
+
+            if (!$hospitals)
+                $hospitals = [];
+            else
+                $hospitals = $hospitals->all();
+        }
+
+
         return view('pages.hospitals')->with([
             'paths' => $paths, 
-            'pageTitle' => "Hospitals Offered"
+            'pageTitle' => "Hospitals Offered",
+            'hospitals' => $hospitals
         ]);
     }
 
@@ -200,3 +263,4 @@ class PagesController extends Controller
         ]);
     }
 }
+

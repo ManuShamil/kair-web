@@ -5,12 +5,23 @@
 
     $route = request() -> path();
 
-    $isAdmin = true;
+    $isAdmin = false;
+
+    if (Session::get('isAdmin')) {
+        $isAdmin = true;
+    }
 
     $displayData = [];
 
+    $count = 0;
     foreach(Department::all() as $department) {
+        if ($route == '/' && $count >= 4)
+            break;
+        
+
         array_push($displayData, new DepartmentListInfo($department));
+
+        $count++;
     }
 
 ?>
@@ -30,9 +41,9 @@
                     </div>
                     <div class="content-wrapper">
                         <h3 class="item-title"><a href="{{ $department -> page }}"> {{ $department->departmentName}}</a></h3>
-                        <div class="item-content">
+                        <!--<div class="item-content">
                             <p>No description..</p>
-                        </div>
+                        </div>-->
                         @if ($isAdmin)
                         <div class="edit-wrapper">
                             <div class="edit-icon">

@@ -11,4 +11,8 @@ class HospitalDepartment extends Model
     public function department() {
         return $this -> belongsTo('App\Models\Department\Department');
     }
+
+    public function hospital() {
+        return $this -> belongsTo('App\Models\Hospital\Hospital');
+    }
 }

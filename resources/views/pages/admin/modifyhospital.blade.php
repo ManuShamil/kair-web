@@ -22,7 +22,7 @@
         public $aboutAR = [];
         public $specialitiesEN = [];
         public $specialitiesAR = [];
-        public $image = [];
+        public $image = "/images/0";
 
         public function __construct($hospital) {
             $this->hospitalID = $hospital->id;
@@ -78,6 +78,8 @@
             foreach($hospital->specialities->where('language','ar') as $d) {
                 array_push($this->specialitiesAR, $d);
             }
+
+            $this->image = "/images/" . $hospital->images->first()->image_id;
         }
 
     }
@@ -129,20 +131,27 @@
                     <input type="submit" placeholder="Submit">
                 </div>
             @elseif ($mode == 'edit')
-                @method('PUT')
+                <img style="height: 100px;" src="{{ $hospitalinfo -> image }}">
+                @method('PUT')         
                 <label for="en_name">
                     <input value="{{$hospitalinfo->hospitalNameEN}}" name="en_name" type="text" placeholder="Hospital Name (EN)">
                 </label>
                 <label for="ar_name">
                     <input value="{{$hospitalinfo->hospitalNameAR}}" name="ar_name" type="text" placeholder="Hospital Name (AR)">
                 </label>
-                <label style="width:100%;" for="location">
-                    <select style="width:100%;" name="location">
+                <label style="width:100%;display:flex;" for="location">
+                    <select id="location_select" style="width:100%;" name="location" onchange="changeLocationEdit()">
                         <option value="0">Choose a Location</option>
                         @foreach($locations as $location)
                         <option value="{{$location->id}}"@if($location->id == $hospitalinfo->locationID) selected @endif>{{$location->en_location}}</option>
                         @endforeach
                     </select>
+                    <div class="edit-wrapper" style="height: fit-content;">
+                        <div class="edit-icon">
+                            <a href="" id="location_edit" target="_blank"></a>
+                        </div>
+                    </div>
+                    <a href="/admin/location/add">Can't find location in the list? Add your own location here..</a>
                 </label>
 
                 <div style="display: flex;">
@@ -176,7 +185,7 @@
                         @endforeach
                     </div>
                     <div style="display:flex;">
-                        <select id="chosen_accr" style="width: 100%;">
+                        <select id="chosen_accr" style="width: 100%;" onchange="changeAccreditationEdit()">
                             <option value="0">Choose Accreditation</option>
                             @foreach($accreditations as $accr)
                             <option value="{{$accr->id}}">{{$accr->title}}</option>
@@ -186,6 +195,12 @@
                         <div style="position: inherit;" id="addaccr" class="admin-add">
                             <a>+</a>
                         </div>
+                        <div class="edit-wrapper" style="height: fit-content;">
+                            <div class="edit-icon">
+                                <a id="accreditation_edit" href="" target="_blank"></a>
+                            </div>
+                        </div>
+                        <a href="/admin/accreditation/add">Can't find accreditation in the list? Add your own accreditation here..</a>
                     </div>
                 </label>
                 <label for="departments[]">
@@ -338,4 +353,15 @@
             @endif
         </form>
     @endcomponent
+
+    <script>
+        function changeLocationEdit() {
+            $('#location_edit').attr('href',`/admin/location/${$('#location_select').val()}/edit`)
+        }
+
+        function changeAccreditationEdit() {
+            $('#accreditation_edit').attr('href',`/admin/accreditation/${$('#chosen_accr').val()}/edit`)
+        }
+    </script>
 @stop
+

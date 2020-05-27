@@ -1,7 +1,7 @@
-@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap);@charset "UTF-8";
 
 #app {
-  font-family: "Open Sans Condensed", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -58,7 +58,7 @@ html {
   flex-wrap: wrap;
   justify-content: space-between;
   margin: auto;
-  padding: 1.4rem 0;
+  padding: 0 0;
 }
 
 @media only screen and (max-width: 924px) {
@@ -175,7 +175,7 @@ html {
   display: block;
   color: #007d9e;
   font-weight: 700;
-  font-size: 1.4rem;
+  font-size: 1rem;
 }
 
 .nav-container {
@@ -231,10 +231,10 @@ html {
 
 .desktop-menu ul li a {
   display: block;
-  padding: 1rem;
+  padding: 0.8rem;
   cursor: pointer;
   font-weight: normal;
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: #7d98ad;
   text-decoration: none;
 }
@@ -447,10 +447,10 @@ html {
 }
 
 .search-form input {
+  border-radius: 50px;
   box-sizing: border-box;
   outline: none;
-  box-shadow: #a9a7a74a 1px 1px 20px;
-  padding: 1rem 1.7rem;
+  padding: 0rem 1.7rem;
   overflow: visible;
   border: 1px solid transparent;
   border-color: #ecf1f2;
@@ -487,20 +487,26 @@ html {
 .search-form input:focus {
   color: #7d98ad;
   border-color: #e0e0e0;
+  box-shadow: #a9a7a74a 1px 1px 20px;
 }
 
 .search-form .button-wrapper {
-  padding: 0.3rem 1.7rem;
+  padding: 0.1rem 0.7rem;
 }
 
-.search-form .button-wrapper a {
+.search-form .button-wrapper button {
+  border-radius: 5px;
+  border: none;
+  font-size: inherit;
+  font-family: inherit;
+  outline: none;
   display: inline-block;
   font-size: 0.9rem;
   text-align: center;
   background-color: #7ace4c;
   color: #7ace4c;
   text-decoration: none;
-  padding: 1rem 2.5rem;
+  padding: 0.8rem 2.5rem;
   transition: all 0.15s ease-in-out;
   cursor: pointer;
   background-repeat: no-repeat;
@@ -508,7 +514,7 @@ html {
   background-image: url("/icons/search.svg");
 }
 
-.search-form .button-wrapper a:hover {
+.search-form .button-wrapper button:hover {
   background-color: #60b532;
   color: #60b532;
 }
@@ -560,6 +566,17 @@ html {
 
 @media (max-width: 768px) {
   .price-estimate {
+    display: block;
+  }
+}
+
+.price-estimate form {
+  display: flex;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .price-estimate form {
     display: block;
   }
 }
@@ -617,7 +634,12 @@ html {
   padding: 0.3rem 1.7rem;
 }
 
-.price-estimate .button-wrapper a {
+.price-estimate .button-wrapper button {
+  border-radius: 5px;
+  border: none;
+  font-size: inherit;
+  font-family: inherit;
+  outline: none;
   display: inline-block;
   font-size: 0.9rem;
   text-align: center;
@@ -629,7 +651,7 @@ html {
   cursor: pointer;
 }
 
-.price-estimate .button-wrapper a:hover {
+.price-estimate .button-wrapper button:hover {
   background-color: #60b532;
 }
 
@@ -706,8 +728,8 @@ html {
 /*^^^^ Intro Component ^^^^*/
 
 .why-section {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-top: 2rem;
+  padding-bottom: 3rem;
   background-color: #edf2f5;
 }
 
@@ -721,7 +743,6 @@ html {
   opacity: 1;
   padding-right: 15%;
   padding-left: 15%;
-  margin-bottom: 4.5rem;
   -webkit-animation-name: fadeInUp;
           animation-name: fadeInUp;
   -webkit-animation-duration: 4s;
@@ -832,7 +853,6 @@ html {
 .why-section .column {
   padding-right: 15px;
   padding-left: 15px;
-  margin-top: 3rem;
   margin-bottom: 3rem;
   position: relative;
   width: 100%;
@@ -862,8 +882,6 @@ html {
 .why-section article {
   height: 100%;
   padding-top: 3rem;
-  background-color: #fff;
-  box-shadow: 0 4px 12px 5px rgba(33, 44, 55, 0.06);
 }
 
 .why-section article .thumb-wrapper a img {
@@ -871,7 +889,7 @@ html {
 }
 
 .why-section article .content-wrapper {
-  padding: 3rem 3rem 3rem;
+  padding: 3rem 3rem 0rem;
 }
 
 .why-section article .content-wrapper .item-title {
@@ -1060,26 +1078,32 @@ html {
 
 @media (min-width: 992px) {
   .department-section .column {
-    flex: 0 0 calc(33.33333% - 30px);
-    max-width: calc(33.33333% - 30px);
+    flex: 0 0 calc(25% - 30px);
+    max-width: calc(25% - 30px);
   }
 }
 
 @media (min-width: 1200px) {
   .department-section .column {
-    flex: 0 0 calc(33.33333% - 30px);
-    max-width: calc(33.33333% - 30px);
+    flex: 0 0 calc(25% - 30px);
+    max-width: calc(25% - 30px);
   }
 }
 
 .department-section article {
   padding-top: 3rem;
-  background-color: #fff;
-  box-shadow: 0 4px 12px 5px rgba(33, 44, 55, 0.06);
 }
 
 .department-section article .thumb-wrapper a img {
   max-width: 64px;
+  box-shadow: 0px 0px #edf2f5;
+  border-radius: 5px;
+  transition: all 0.5s ease-in-out;
+}
+
+.department-section article .thumb-wrapper a img:hover {
+  transform: translateY(-5px) scale(1.5);
+  box-shadow: 0px 20px 41px #0000001f;
 }
 
 .department-section article .content-wrapper {
@@ -2039,7 +2063,6 @@ html {
   font-size: 0.85rem;
   font-weight: 300;
   margin-bottom: 2rem;
-  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   line-height: 1.8;
   color: #7d98ad;
 }
@@ -2798,8 +2821,8 @@ html {
 /* ^^ Admin Form ^^ */
 
 .hospitals-section {
-  padding-top: 7rem;
-  padding-bottom: 5rem;
+  padding-top: 2rem;
+  padding-bottom: 3rem;
   color: #000;
   background-color: #fff;
 }
@@ -2853,12 +2876,137 @@ html {
   }
 }
 
-.hospitals-section article .overlay-effect {
+.hospitals-section .column.list-page {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-bottom: 3rem;
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+}
+
+@media (min-width: 576px) {
+  .hospitals-section .column.list-page {
+    flex: 0 0 calc(100% - 30px);
+    max-width: calc(100% - 30px);
+  }
+}
+
+@media (min-width: 992px) {
+  .hospitals-section .column.list-page {
+    flex: 0 0 calc(100% - 30px);
+    max-width: calc(100% - 30px);
+  }
+}
+
+.hospitals-section .column.list-page article {
+  border-radius: 5px;
+  display: flex;
+  box-shadow: 0 4px 12px rgba(33, 44, 55, 0.06);
+}
+
+@media (max-width: 992px) {
+  .hospitals-section .column.list-page article {
+    display: block;
+  }
+}
+
+.hospitals-section .column.list-page article img {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  max-width: 30%;
+  height: auto;
+  margin: 5px;
+}
+
+@media (max-width: 992px) {
+  .hospitals-section .column.list-page article img {
+    max-width: 100%;
+  }
+}
+
+.hospitals-section .column.list-page article .entry-content {
+  text-align: left;
+  padding: 1.5rem 1.5rem;
+}
+
+@media (max-width: 576px) {
+  .hospitals-section .column.list-page article .entry-content {
+    text-align: center;
+  }
+}
+
+.hospitals-section .column.list-page article .entry-content a {
+  text-decoration: none;
+}
+
+.hospitals-section .column.list-page article .entry-content span {
+  display: block;
+  background-position: center;
+  background-size: contain;
+  overflow: hidden;
+  width: 50px;
+  height: 50px;
+  font-size: 0.9rem;
+}
+
+.hospitals-section .column.list-page article .entry-content .entry-title {
+  margin-top: 0;
+}
+
+.hospitals-section .column.list-page article .entry-content .entry-title a {
+  font-weight: 400;
+  color: #2f3d4a;
+}
+
+.hospitals-section .column.list-page article .entry-content .entry-info {
+  font-weight: 300;
+  font-size: 0.9rem;
+}
+
+.hospitals-section .column.list-page article .entry-content .entry-info a {
+  color: #7d98ad;
+}
+
+.hospitals-section .column.list-page article .entry-content .entry-summary {
+  font-size: 0.85rem;
+  font-weight: 300;
+  margin-bottom: 2rem;
+  line-height: 1.8;
+  color: #7d98ad;
+  overflow: hidden;
+}
+
+.hospitals-section .column.list-page article .entry-content .entry-summary ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 2.5rem;
+}
+
+.hospitals-section .column.list-page article .entry-content .entry-summary ul li {
+  background-image: url("/icons/arrow-list-one-bg.png");
+  background-repeat: no-repeat;
+  background-position: 4px 6px;
+  padding-left: 25px;
+  margin-bottom: 10px;
+  line-height: 1.8;
+  color: #7d98ad;
+  font-size: 0.9rem;
+}
+
+.hospitals-section .column.list-page article .entry-content hr {
+  margin: 10px 0;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.hospitals-section article:not(.list-page) .overlay-effect {
   position: relative;
   overflow: hidden;
 }
 
-.hospitals-section article .overlay-effect .overlay {
+.hospitals-section article:not(.list-page) .overlay-effect .overlay {
   display: block;
   z-index: 999;
   position: absolute;
@@ -2874,67 +3022,66 @@ html {
   transition: all 0.3s;
 }
 
-.hospitals-section article .overlay-effect .overlay:hover {
+.hospitals-section article:not(.list-page) .overlay-effect .overlay:hover {
   background-color: #7ace4c96;
   transform: rotate(0);
   opacity: 1;
 }
 
-.hospitals-section article .entry-content {
+.hospitals-section article:not(.list-page) .entry-content {
   box-shadow: 0 4px 12px rgba(33, 44, 55, 0.06);
   text-align: left;
   padding: 1.5rem 1.5rem;
 }
 
 @media (max-width: 576px) {
-  .hospitals-section article .entry-content {
+  .hospitals-section article:not(.list-page) .entry-content {
     text-align: center;
   }
 }
 
-.hospitals-section article .entry-content a {
+.hospitals-section article:not(.list-page) .entry-content a {
   text-decoration: none;
 }
 
-.hospitals-section article .entry-content .entry-title {
+.hospitals-section article:not(.list-page) .entry-content .entry-title {
   margin-top: 0;
 }
 
-.hospitals-section article .entry-content .entry-title a {
+.hospitals-section article:not(.list-page) .entry-content .entry-title a {
   font-weight: 400;
   color: #2f3d4a;
 }
 
-.hospitals-section article .entry-content .entry-info {
+.hospitals-section article:not(.list-page) .entry-content .entry-info {
   font-weight: 300;
   font-size: 0.9rem;
 }
 
-.hospitals-section article .entry-content .entry-info a {
+.hospitals-section article:not(.list-page) .entry-content .entry-info a {
   color: #7d98ad;
 }
 
-.hospitals-section article .entry-content .entry-summary {
+.hospitals-section article:not(.list-page) .entry-content .entry-summary {
   font-size: 0.85rem;
   font-weight: 300;
   margin-bottom: 2rem;
-  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   line-height: 1.8;
   color: #7d98ad;
   overflow: hidden;
 }
 
-.hospitals-section article .entry-content hr {
+.hospitals-section article:not(.list-page) .entry-content hr {
   margin: 10px 0;
   border: 0;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.hospitals-section article figure {
+.hospitals-section article:not(.list-page) figure {
   margin: 0;
 }
 
-.hospitals-section article img {
+.hospitals-section article:not(.list-page) img {
   width: 0px;
   height: 0px;
   padding: 50% 50%;
@@ -2945,7 +3092,7 @@ html {
 }
 
 @media (max-width: 576px) {
-  .hospitals-section article img {
+  .hospitals-section article:not(.list-page) img {
     padding: 40% 40%;
   }
 }
@@ -2960,7 +3107,6 @@ html {
   opacity: 1;
   padding-right: 15%;
   padding-left: 15%;
-  margin-bottom: 4.5rem;
   -webkit-animation-name: fadeInUp;
           animation-name: fadeInUp;
   -webkit-animation-duration: 4s;
@@ -3141,7 +3287,6 @@ html {
   font-size: 0.85rem;
   font-weight: 300;
   margin-bottom: 2rem;
-  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   line-height: 1.8;
   color: #7d98ad;
 }
@@ -3225,7 +3370,7 @@ html {
 }
 
 .hospital-info-container {
-  padding-top: 6rem;
+  padding-top: 0rem;
   margin-right: auto;
   margin-left: auto;
   padding-right: 15px;

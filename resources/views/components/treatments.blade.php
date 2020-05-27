@@ -9,7 +9,11 @@
         array_push($data, new TreatmentListInfo($treatment));
     }
 
-    $isAdmin = true;
+    $isAdmin = false;
+
+    if (Session::get('isAdmin')) {
+        $isAdmin = true;
+    }
 ?>
 
 <div class="treatments-list-container">

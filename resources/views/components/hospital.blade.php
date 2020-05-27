@@ -14,6 +14,11 @@
         array_push($relatedHospitals, new HospitalListInfo($related)); 
     }
 
+    $isAdmin = false;
+
+    if (Session::get('isAdmin')) {
+        $isAdmin = true;
+    }
 ?>
 
 <div class="hospital-info-container">
@@ -26,6 +31,13 @@
                     </a>
                 </figure>
                 <h3 class="hospital-title">{{ $hospitalInfo-> name }}</h3>
+                @if ($isAdmin)
+                <div class="edit-wrapper">
+                    <div class="edit-icon">
+                        <a href="/admin/hospital/{{ $hospital -> id}}/edit"></a>
+                    </div>
+                </div>
+                @endif
                 <div class="hospital-departments">
                     @foreach ($hospitalInfo->departments as $department)
                     <div class="department">

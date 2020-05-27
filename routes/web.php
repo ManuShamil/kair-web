@@ -42,6 +42,7 @@ Route::get('/images/why/{file_name}', 'ImagesController@getWhyImages');
 Route::get('/images/how/{file_name}', 'ImagesController@getHowImages');
 Route::get('/images/testimonial/{file_name}', 'ImagesController@getTestimonialImages');*/
 
+
 Route::get('/images/{image_id}', 'ImagesController@getImage');
 
 Route::get('/admin/department/add', 'AdminPagesController@addDepartment');
@@ -68,3 +69,7 @@ Route::get('/admin/location/add', 'AdminPagesController@addLocation');
 Route::post('/admin/location', 'AdminPagesController@postLocation');
 Route::get('/admin/location/{location_id}/edit', 'AdminPagesController@editLocation');
 Route::put('/admin/location/{location_id}', 'AdminPagesController@updateLocation');
+
+
+Route::get('/admin/login', 'AdminPagesController@loginIn');
+Route::get('/admin/logout', 'AdminPagesController@logOut');

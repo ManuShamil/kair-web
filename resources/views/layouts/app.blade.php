@@ -6,7 +6,10 @@
     <title>KairHealth - @yield('title')</title>
   </head>
   <body>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
+    <!--<link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
+    -->
+    <!--<link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">-->
+    <!--<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300&display=swap" rel="stylesheet">-->
     <link rel='stylesheet' id='inspiry-google-fonts-css'  href='//fonts.googleapis.com/css?family=Montserrat%3A300%2C300i%2C400%2C400i%2C500%2C500i%2C600%2C600i%2C700%2C700i&#038;subset=latin%2Clatin-ext&#038;ver=3.0.0' type='text/css' media='all' />
     <link rel='stylesheet' id='font-awesome-css-css'  href='//mpreborn.b-cdn.net/wp-content/themes/inspiry-medicalpress/common/css/vendors/fontawesome-all.min.css?ver=5.0.8' type='text/css' media='all' />
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">

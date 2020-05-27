@@ -457,7 +457,7 @@ class AdminPagesController extends Controller
     public function updateHospital(Request $request, $hospital_id) {
         $id = $request -> hospital_id;
 
-        $hospital = Hospital::where('id', $id);
+        $hospital = Hospital::where('id', $id)->get()->first();
 
         $en_name = $request->en_name;
         $ar_name = $request->ar_name;
@@ -575,6 +575,19 @@ class AdminPagesController extends Controller
         }
 
 
+        if ($request -> hasFile('image')) {
+
+            $file = $request->file('image');
+            $extension = $request -> image -> extension();
+
+            Image::where('id', $hospital->images[0]->image_id) -> update([
+                "image" => file_get_contents($file -> getRealPath()),
+                "extension" => $extension,
+                "file_name" => sha1(time()) . "." . $extension
+            ]);
+        }
+
+
         return redirect('/admin/hospital/'.$id.'/edit');
     }
     public function updateDepartment(Request $request) {
@@ -678,5 +691,15 @@ class AdminPagesController extends Controller
 
         return redirect('/admin/treatment/'. $treatment_id .'/edit');
 
+    }
+
+    function loginIn() {
+        session(['isAdmin' => true]);
+        return redirect('/');
+    }
+
+    function logOut() {
+        session(['isAdmin' => false]);
+        return redirect('/');
     }
 }
