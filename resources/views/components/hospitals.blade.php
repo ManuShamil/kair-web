@@ -9,8 +9,12 @@
 
     $displayData = [];
 
+    $count = 0;
     foreach($hospitals as $hospital) {
+        if($route=='/' && $count>=4)
+            break;
         array_push($displayData, new HospitalListInfo($hospital));
+        $count++;
     }
 
     $isAdmin = false;
@@ -25,7 +29,7 @@
             @if ($route == '/')
             <header>
                 <h2 class="section-title">Browse our <span>Hospitals</span></h2>
-                <p>More than <span>50+</span> Hospitals across India.</p>
+                <p><span>2500+</span> specialists and surgeons to choose from</p>
             </header>
             @endif
             <div class="row">
@@ -64,14 +68,17 @@
                                 @endif
                                 @if($route != '/')
                                 <hr>
-                                <div class="entry-summary">
-                                    <ul>
-                                        @foreach($hospital->specialities as $speciality)
-                                            <li>{{ $speciality }}</li>
+                                <div class="entry-summary" style="margin-bottom: 0;">
+                                    <ul style="margin-bottom: 0;">
+                                        @foreach($hospital->abouts as $about)
+                                            <li>{{ $about }}</li>
                                         @endforeach
                                     </ul>
                                 </div>
                                 @endif
+                                <div class="button-wrapper" style="float: right; margin-top: 0;">
+                                    <a href="{{ $hospital->page }}" >Read More...</a>
+                                </div>
                             </div>
                         </article>
                     </div>
@@ -113,6 +120,7 @@
                                     {{ $hospital->truncatedDesc }}
                                 </p>
                                 @endif
+                                
                             </div>
                         </article>
                     </div>

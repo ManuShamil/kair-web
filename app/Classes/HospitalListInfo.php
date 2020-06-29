@@ -19,18 +19,18 @@ class HospitalListInfo {
     public $accreditations = [];
     public function __construct($hospital) {
         $this->id= $hospital->id;
-        $this->name=$hospital->info->where('language','en')->first()->title;
-        $this->image= "/images/" . $hospital->images->first()->image_id;
-        $this->location= $hospital->location->en_location;
-        $this->address= $hospital->address->where('language', 'en')->first()->address;
-        $this->page= "/hospital/" . $hospital->id;
-        $this->truncatedDesc = substr($hospital->infrastructures->where('language','en')->first()->infrastructure,0,150);
-        $this->desc = $hospital->infrastructures->where('language','en')->first()->infrastructure;
-        $this->beds = $hospital->beds;
+        $this->name=$hospital->info->where('language','en')->first()->title??'';
+        $this->image= "/images/" . $hospital->images->first()->image_id??'';
+        $this->location= $hospital->location->en_location??'';
+        $this->address= $hospital->address->where('language', 'en')->first()->address??'';
+        $this->page= "/hospital/" . $hospital->id??'';
+        $this->truncatedDesc = substr($hospital->infrastructures->where('language','en')->first()->infrastructure??'No description',0,150);
+        $this->desc = $hospital->infrastructures->where('language','en')->first()->infrastructure??'';
+        $this->beds = $hospital->beds??0;
 
         $abouts = $hospital->about->where('language','en');
         foreach($abouts as $about) {
-            array_push($this->abouts, $about->about);
+            array_push($this->abouts, substr($about->about, 0, 400) . "...");
         }
 
         $specialities = $hospital->specialities->where('language','en');

@@ -1,6 +1,8 @@
 <?php
     use App\Classes\TestimonialListInfo;
 
+    $route = Request::path();
+
     $testimonials = App\Models\Testimonial\Testimonial::all();
 
     $displayData = [];
@@ -8,6 +10,11 @@
         array_push($displayData, new TestimonialListInfo($testimonial));
     }
 
+    $isAdmin = false;
+
+    if (Session::get('isAdmin')) {
+        $isAdmin = true;
+    }
 ?>
 
 <div class="testimonials-section">
@@ -34,6 +41,13 @@
                                         <a class="author-link" target="_blank">{{ $testimonial -> location }}</a>
                                     </div>
                                 </footer>
+                                @if ($isAdmin)
+                                <div class="edit-wrapper">
+                                    <div class="edit-icon">
+                                        <a href="/admin/testimonial/{{ $testimonial -> testimonialID}}/edit"></a>
+                                    </div>
+                                </div>
+                                @endif
                             </div> 
                         </div>
                     @endforeach                    
@@ -41,6 +55,11 @@
             </div>
         </div>
     </div>
+    @if ($isAdmin)
+        <div class="admin-add">
+            <a href="/admin/testimonial/add">+</a>
+        </div>
+    @endif
 </div>
 
 <style>

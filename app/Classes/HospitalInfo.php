@@ -62,12 +62,12 @@ class HospitalInfo {
     public $specialities = [];
     public function __construct($hospital) {
         $this->id= $hospital->id;
-        $this->name=$hospital->info->where('language','en')->first()->title;
-        $this->beds=$hospital->beds;
+        $this->name=$hospital->info->where('language','en')->first()->title??'';
+        $this->beds=$hospital->beds??0;
         $this->image= "/images/" . $hospital->images->first()->image_id;
-        $this->location= $hospital->location->en_location;
-        $this->address=$hospital->address->where('language','en')->first()->address;
-        $this->landmark=$hospital->address->where('language','en')->first()->land_mark;
+        $this->location= $hospital->location->en_location??'';
+        $this->address=$hospital->address->where('language','en')->first()->address??'';
+        $this->landmark=$hospital->address->where('language','en')->first()->land_mark??'';
 
         $this->page= "/hospital/" . $hospital->id;
 

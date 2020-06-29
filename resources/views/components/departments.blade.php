@@ -28,8 +28,10 @@
 
 <div class="department-section">
     <div class="department-container">
+        <header>
+            <h2 class="section-title">Discover High Quality and Affordable Treatment in India</h2>
+        </header>
         <div class="row">
-
             @foreach ($displayData as $department)
 
             <div class="column">

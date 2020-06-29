@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMail;
+use App\Mail\SendCallBack;
 
 use App\Classes\Path;
 
@@ -92,6 +95,18 @@ class PagesController extends Controller
         ]);
     }
 
+    public function postCallback(Request $request) {
+        $number = $request->number ?? '';
+
+        $data = array(
+            'phone' => $number
+        );
+
+        Mail::to('contact@kairhealth.in')->send(new SendCallBack($data));
+
+        return redirect('/');
+    }
+
     public function postMessage(Request $request) {
         $name = $request->name;
         $email = $request->email;
@@ -128,6 +143,17 @@ class PagesController extends Controller
                 'success' => false
             ]);
         } else {
+            $data = array(
+                'name' => $name,
+                'email' => $email,
+                'number' => $number,
+                'message' => $message
+            );
+
+            Mail::to('contact@kairhealth.in')->send(new SendMail($data));
+
+
+            //send mail here
 
             $paths= array(
                 new Path('Success', ''),

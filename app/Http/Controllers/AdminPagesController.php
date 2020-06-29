@@ -20,12 +20,352 @@ use App\Models\Hospital\HospitalSpeciality;
 use App\Models\Location;
 use App\Models\Image;
 use App\Models\Accreditation;
+use App\Models\How\How;
+use App\Models\How\HowInfo;
+use App\Models\Why\Why;
+use App\Models\Why\WhyInfo;
+use App\Models\Testimonial\Testimonial;
+use App\Models\Testimonial\TestimonialInfo;
 
 
 use App\Classes\Path;
 
 class AdminPagesController extends Controller
 {
+
+    public function addHow() {
+        $paths= array(
+            new path(
+                'Add How',
+                ''
+            ),
+            new Path(
+                'Admin', 
+                ''
+            )
+        );
+
+        return view('pages.admin.modifyhow')->with([
+            'paths' => $paths,
+            'pageTitle' => 'Add How',
+            'mode' => 'add'
+        ]);
+    }
+
+    public function postHow(Request $request) {
+        $info = $request->info ?? '';
+        $description = $request->description ?? '';
+
+        if (!($request -> hasFile('image'))) {
+            echo "No image specified";
+            return;
+        }
+
+        $file = $request->file('image');
+        $extension = $request -> image -> extension();
+        $newImage = new Image();
+        $newImage -> file_name = sha1(time()) . "." . $extension;
+        $newImage -> extension = $extension;
+        $newImage -> image = file_get_contents($file -> getRealPath());
+        $newImage -> save();
+
+        $newHow = new How();
+        $newHow->image_id=$newImage->id;
+        $newHow->save();
+
+        $newHowInfo = new HowInfo();
+        $newHowInfo->how_id = $newHow->id;
+        $newHowInfo->info = $info;
+        $newHowInfo->description = $description;
+        $newHowInfo->language = "en";
+        $newHowInfo->save();
+
+        return redirect('/how');
+    }
+
+    public function updateHow(Request $request, $how_id) {
+        $how = How::find($how_id);
+
+        if ($request -> hasFile('image')) {
+
+            $file = $request->file('image');
+            $extension = $request -> image -> extension();
+
+            Image::where('id', $how -> image_id) -> update([
+                "image" => file_get_contents($file -> getRealPath()),
+                "extension" => $extension,
+                "file_name" => sha1(time()) . "." . $extension
+            ]);
+        }
+
+        $info = $request->info ?? '';
+        $description = $request->description ?? '';
+
+        HowInfo::where('how_id', $how_id) -> update([
+            "info" => $info,
+            "description" => $description
+        ]);
+
+        return redirect('/admin/how/'.$how_id.'/edit');
+    }
+
+    public function deleteHow(Request $request, $how_id) {
+
+        //delete related departmentinfo
+        HowInfo::where('how_id',$how_id)->delete();
+        How::where('id',$how_id)->delete();
+
+        return redirect('/how');
+    }
+
+    public function editHow($how_id) {
+        $how = How::find($how_id);
+        $how_title = $how-> info[0] -> info;
+
+        $paths= array(
+            new path(
+                'Edit How',
+                ''
+            ),
+            new Path(
+                'Admin', 
+                ''
+            )
+        );
+
+        return view('pages.admin.modifyhow')->with([
+            'paths' => $paths,
+            'pageTitle' => 'Editing ' . $how_title,
+            'mode' => 'edit',
+            'how' => $how
+        ]);
+    }
+
+    public function addTestimonial() {
+        $paths= array(
+            new path(
+                'Add Testimonial',
+                ''
+            ),
+            new Path(
+                'Admin', 
+                ''
+            )
+        );
+
+        return view('pages.admin.modifytestimonial')->with([
+            'paths' => $paths,
+            'pageTitle' => 'Add Testimonial',
+            'mode' => 'add'
+        ]);
+    }
+
+    public function addWhy() {
+        $paths= array(
+            new path(
+                'Add Why',
+                ''
+            ),
+            new Path(
+                'Admin', 
+                ''
+            )
+        );
+
+        return view('pages.admin.modifywhy')->with([
+            'paths' => $paths,
+            'pageTitle' => 'Add Why',
+            'mode' => 'add'
+        ]);
+    }
+
+    public function postTestimonial(Request $request) {
+        $name = $request->name ?? '';
+        $location = $request->location ?? '';
+        $testimonial = $request ->testimonial ?? '';
+
+        
+        if (!($request -> hasFile('image'))) {
+            echo "No image specified";
+            return;
+        }
+
+        $file = $request->file('image');
+        $extension = $request -> image -> extension();
+        $newImage = new Image();
+        $newImage -> file_name = sha1(time()) . "." . $extension;
+        $newImage -> extension = $extension;
+        $newImage -> image = file_get_contents($file -> getRealPath());
+        $newImage -> save();
+        
+
+        $newTestimonial = new Testimonial();
+        $newTestimonial->image_id=$newImage->id;
+        $newTestimonial->save();
+
+        $newTestimonialInfo = new TestimonialInfo();
+        $newTestimonialInfo->testimonial_id = $newTestimonial->id;
+        $newTestimonialInfo->language = "en";
+        $newTestimonialInfo->name = $name ?? '';
+        $newTestimonialInfo->location = $location ?? '';
+        $newTestimonialInfo->testimonial = $testimonial ?? '';
+        $newTestimonialInfo->save();
+
+        return redirect('/');
+    }
+
+    public function postWhy(Request $request) {
+        $info = $request->info ?? '';
+        $description = $request->description ?? '';
+
+        if (!($request -> hasFile('image'))) {
+            echo "No image specified";
+            return;
+        }
+
+        $file = $request->file('image');
+        $extension = $request -> image -> extension();
+        $newImage = new Image();
+        $newImage -> file_name = sha1(time()) . "." . $extension;
+        $newImage -> extension = $extension;
+        $newImage -> image = file_get_contents($file -> getRealPath());
+        $newImage -> save();
+
+        $newWhy = new Why();
+        $newWhy->image_id=$newImage->id;
+        $newWhy->save();
+
+        $newWhyInfo = new WhyInfo();
+        $newWhyInfo->why_id = $newWhy->id;
+        $newWhyInfo->info = $info;
+        $newWhyInfo->description = $description;
+        $newWhyInfo->language = "en";
+        $newWhyInfo->save();
+
+        return redirect('/why');
+    }
+
+    
+    public function updateTestimonial(Request $request, $testimonial_id) {
+        $testimonial = Testimonial::find($testimonial_id);
+
+        if ($request -> hasFile('image')) {
+
+            $file = $request->file('image');
+            $extension = $request -> image -> extension();
+
+            Image::where('id', $testimonial -> image_id) -> update([
+                "image" => file_get_contents($file -> getRealPath()),
+                "extension" => $extension,
+                "file_name" => sha1(time()) . "." . $extension
+            ]);
+        }
+
+        $name = $request->name ?? '';
+        $location = $request->location ?? '';
+        $testimonial = $request->testimonial ?? '';
+
+        TestimonialInfo::where('testimonial_id', $testimonial_id) -> update([
+            "name" => $name,
+            "location" => $location,
+            "testimonial" => $testimonial
+        ]);
+
+        return redirect('/admin/testimonial/'.$testimonial_id.'/edit');
+    }
+
+    public function updateWhy(Request $request, $why_id) {
+        $why = Why::find($why_id);
+
+        if ($request -> hasFile('image')) {
+
+            $file = $request->file('image');
+            $extension = $request -> image -> extension();
+
+            Image::where('id', $why -> image_id) -> update([
+                "image" => file_get_contents($file -> getRealPath()),
+                "extension" => $extension,
+                "file_name" => sha1(time()) . "." . $extension
+            ]);
+        }
+
+        $info = $request->info ?? '';
+        $description = $request->description ?? '';
+
+        WhyInfo::where('why_id', $why_id) -> update([
+            "info" => $info,
+            "description" => $description
+        ]);
+
+        return redirect('/admin/why/'.$why_id.'/edit');
+    }
+
+    public function deleteWhy(Request $request, $why_id) {
+
+        //delete related departmentinfo
+        WhyInfo::where('why_id',$why_id)->delete();
+        Why::where('id',$why_id)->delete();
+
+        return redirect('/why');
+    }
+
+    
+    public function deleteTestimonial(Request $request, $testimonial_id) {
+
+        //delete related departmentinfo
+        TestimonialInfo::where('testimonial_id',$testimonial_id)->delete();
+        Testimonial::where('id',$testimonial_id)->delete();
+
+        return redirect('/');
+    }
+
+
+    public function editWhy($why_id) {
+        $why = Why::find($why_id);
+        $why_title = $why-> info[0] -> info;
+
+        $paths= array(
+            new path(
+                'Edit Why',
+                ''
+            ),
+            new Path(
+                'Admin', 
+                ''
+            )
+        );
+
+        return view('pages.admin.modifywhy')->with([
+            'paths' => $paths,
+            'pageTitle' => 'Editing ' . $why_title,
+            'mode' => 'edit',
+            'why' => $why
+        ]);
+    }
+
+    
+    public function editTestimonial($testimonial_id) {
+        $testimonial = Testimonial::find($testimonial_id);
+        $testimonial_name = $testimonial-> info[0] -> name . "'s testimonial";
+
+        $paths= array(
+            new path(
+                'Edit Testimonial',
+                ''
+            ),
+            new Path(
+                'Admin', 
+                ''
+            )
+        );
+
+        return view('pages.admin.modifytestimonial')->with([
+            'paths' => $paths,
+            'pageTitle' => 'Editing ' . $testimonial_name,
+            'mode' => 'edit',
+            'testimonial' => $testimonial
+        ]);
+    }
 
     public function addTreatment($department_id) {
 
@@ -155,6 +495,11 @@ class AdminPagesController extends Controller
 
     public function postAccreditation(Request $request) {
 
+        if (!($request -> hasFile('image'))) {
+            echo "No image specified";
+            return;
+        }
+
         $file = $request->file('image');
         $extension = $request -> image -> extension();
         $newImage = new Image();
@@ -248,6 +593,11 @@ class AdminPagesController extends Controller
         $en_name = $request -> en_name;
         $ar_name = $request -> ar_name;
         $image = $request -> image;
+
+        if (!($request -> hasFile('image'))) {
+            echo "No image specified";
+            return;
+        }
 
         $file = $request->file('image');
         $extension = $request -> image -> extension();
@@ -351,12 +701,18 @@ class AdminPagesController extends Controller
         ]);
     }
 
+
     public function postDepartment(Request $request) {
 
         $name = $request -> department_id;
         $en_name = $request -> en_name;
         $ar_name = $request -> ar_name;
         $image = $request -> image;
+
+        if (!($request -> hasFile('image'))) {
+            echo "No image specified";
+            return;
+        }
 
         $file = $request->file('image');
         $extension = $request -> image -> extension();
@@ -395,6 +751,11 @@ class AdminPagesController extends Controller
         $location_id = $request->location;
         $image = $request -> image;
 
+        if (!($request -> hasFile('image'))) {
+            echo "No image specified";
+            return;
+        }
+
         $file = $request->file('image');
         $extension = $request -> image -> extension();
         $newImage = new Image();
@@ -426,7 +787,7 @@ class AdminPagesController extends Controller
         $newInfo_EN->hospital_id=$newHospital->id;
         $newInfo_EN -> save();
 
-        return redirect('/admin/hospital/add');
+        return redirect('/admin/hospital/'.$newHospital->id.'/edit');
         
     }
 
@@ -454,6 +815,22 @@ class AdminPagesController extends Controller
         ]);
     }
 
+    public function deleteHospital(Request $request, $hospital_id) {
+
+        //delete related departmentinfo
+        HospitalAbout::where('hospital_id',$hospital_id)->delete();
+        HospitalAccreditation::where('hospital_id',$hospital_id)->delete();
+        HospitalAddress::where('hospital_id',$hospital_id)->delete();
+        HospitalDepartment::where('hospital_id',$hospital_id)->delete();
+        HospitalImage::where('hospital_id',$hospital_id)->delete();
+        HospitalInfo::where('hospital_id',$hospital_id)->delete();
+        HospitalInfrastructure::where('hospital_id',$hospital_id)->delete();
+        HospitalSpeciality::where('hospital_id',$hospital_id)->delete();
+        Hospital::where('id',$hospital_id)->delete();
+
+        return redirect('/hospitals/');
+    }
+
     public function updateHospital(Request $request, $hospital_id) {
         $id = $request -> hospital_id;
 
@@ -474,10 +851,10 @@ class AdminPagesController extends Controller
 
         Hospital::where('id',$id)->update(["location_id"=>$location_id]);
 
-        $en_address = $request->en_address;
-        $en_landmark = $request->en_landmark;
-        $ar_address = $request->ar_address;
-        $ar_landmark = $request->ar_landmark;
+        $en_address = $request->en_address??'';
+        $en_landmark = $request->en_landmark??'';
+        $ar_address = $request->ar_address??'';
+        $ar_landmark = $request->ar_landmark??'';
 
         HospitalAddress::where('hospital_id', $id)->delete();
 
@@ -590,6 +967,31 @@ class AdminPagesController extends Controller
 
         return redirect('/admin/hospital/'.$id.'/edit');
     }
+
+    public function deleteDepartment(Request $request) {
+        $id = $request->id;
+
+        //delete departments releated
+        HospitalDepartment::where('department_id',$id)->delete();
+
+        //delete related treatments
+        $treatments =  Treatment::where('department_id',$id)->get()->pluck('id')->toArray();
+
+        foreach($treatments as $treatment_id) {
+            TreatmentInfo::where('treatment_id',$treatment_id)->delete();
+            TreatmentDescription::where('treatment_id',$treatment_id)->delete();
+            Treatment::where('id',$treatment_id)->delete();
+        }
+
+
+
+        //delete related departmentinfo
+        DepartmentInfo::where('department_id',$id)->delete();
+        Department::where('id',$id)->delete();
+
+        return redirect('/departments');
+    }
+
     public function updateDepartment(Request $request) {
         $id = $request -> id;
         $name = $request -> department_id;
@@ -625,6 +1027,17 @@ class AdminPagesController extends Controller
         ]);
 
         return redirect('/admin/department/'.$id.'/edit');
+    }
+
+    public function deleteTreatment(Request $request, $treatment_id) {
+        $department_id = $request->department_id;
+
+        //delete related departmentinfo
+        TreatmentDescription::where('treatment_id',$treatment_id)->delete();
+        TreatmentInfo::where('treatment_id',$treatment_id)->delete();
+        Treatment::where('id',$treatment_id)->delete();
+
+        return redirect('/department/'.Department::find($department_id)->department_id );
     }
 
     public function updateTreatment(Request $request, $treatment_id) {
@@ -693,9 +1106,29 @@ class AdminPagesController extends Controller
 
     }
 
-    function loginIn() {
-        session(['isAdmin' => true]);
-        return redirect('/');
+    function getLogin() {
+        
+        $paths= array(
+            new Path('Contact', '/contact')
+        );
+
+        return view('pages.admin.login')->with([
+            'paths' => $paths, 
+            'pageTitle' => "Admin Login"
+        ]);
+    }
+
+    function loginIn(Request $request) {
+
+        if ($request->username == "admin" && $request->password=="1304") { 
+            session(['isAdmin' => true]);
+        
+            return redirect('/');
+        } else {
+            session(['isAdmin' => false]);
+            echo "Username or password is wrong!";
+        }
+        
     }
 
     function logOut() {

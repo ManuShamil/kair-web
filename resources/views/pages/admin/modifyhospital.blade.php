@@ -98,14 +98,13 @@
 ?>
 
 @section('content')
+    @component('components.navbar') @endcomponent
     @component('components.admin.form')
         <h1> {{ $pageTitle }} </h1>
 
-
+        @if ($mode == 'add')
         <form method="POST" action="{{$action}}" enctype="multipart/form-data">
             @csrf
-
-            @if ($mode == 'add')
                 <label for="en_name">
                     <input name="en_name" type="text" placeholder="Hospital Name (EN)">
                 </label>
@@ -122,6 +121,7 @@
                         <option value="{{$location->id}}">{{$location->en_location}}</option>
                         @endforeach
                     </select>
+                    <a href="/admin/location/add">Can't find location in the list? Add your own location here..</a>
                 </label>
                 <label for="image">
                     <input name="image" type="file" placeholder="Upload Image">
@@ -130,9 +130,12 @@
                 <div class="button-wrapper">
                     <input type="submit" placeholder="Submit">
                 </div>
-            @elseif ($mode == 'edit')
-                <img style="height: 100px;" src="{{ $hospitalinfo -> image }}">
-                @method('PUT')         
+            </form>
+        @elseif ($mode == 'edit')
+            <form method="POST" action="{{$action}}" enctype="multipart/form-data">
+                @csrf
+                @method('PUT') 
+                <img style="height: 100px;" src="{{ $hospitalinfo -> image }}">        
                 <label for="en_name">
                     <input value="{{$hospitalinfo->hospitalNameEN}}" name="en_name" type="text" placeholder="Hospital Name (EN)">
                 </label>
@@ -350,8 +353,16 @@
                 <div class="button-wrapper">
                     <input type="submit" placeholder="Submit">
                 </div>
+            </form>
+            <form method="POST" action="{{$action}}" enctype="multipart/form-data">
+                @method('DELETE')
+                @csrf
+                <div class="button-wrapper">
+                    <input style="background-color: #f00;"type="submit" value="Delete">
+                </div>
+            </form>
+
             @endif
-        </form>
     @endcomponent
 
     <script>

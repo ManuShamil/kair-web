@@ -261,7 +261,9 @@
 <div class="intro-section" style="background-image: url('/images/arfan-a-oxW5Kh_MyGQ-unsplash.jpg')">
     <div class="intro-container">
         <header>
-            <h2 class="section-title">Welcome to <span>KairHealth</span></h2>
+            <h2 class="section-title" style="padding: 20px 0px;"><span>Treatment in India made easy</span></h2>
+            <h3 class="section-title">Low cost & high quality | 24/7 Support</h3>
+            <h3 class="section-title">Value added services | Free service for patients</h3>
             <p></p>
         </header>
         <header style=" margin-bottom: 0;">

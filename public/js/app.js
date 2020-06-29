@@ -19354,6 +19354,8 @@ __webpack_require__(/*! ./treatmentInfo.js */ "./resources/js/treatmentInfo.js")
 
 __webpack_require__(/*! ./admin.js */ "./resources/js/admin.js");
 
+__webpack_require__(/*! ./callback.js */ "./resources/js/callback.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -19385,6 +19387,45 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/callback.js":
+/*!**********************************!*\
+  !*** ./resources/js/callback.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var callback = {
+  init: function init() {
+    this.addWatchers();
+  },
+  addWatchers: function addWatchers() {
+    this.watchers.forEach(function (watcher) {
+      watcher.watch();
+    });
+  },
+  watchers: [{
+    name: 'Open Popup Watcher',
+    watch: function watch() {
+      $('.cmb-pop-opener').on('click', function (e) {
+        $('.cmb-form').toggleClass('open');
+      });
+      $('body').on('click', function (e) {
+        var isOnForm = $('.cmb-form').has(e.target).length >= 1 || $(e.target)[0] == $('.cmb-pop-opener')[0];
+
+        if (!isOnForm) {
+          if ($('.cmb-form').hasClass('open')) $('.cmb-form').toggleClass('open');
+        } //console.log($(e.target),$('.cmb-pop-opener'))
+
+      });
+    }
+  }]
+};
+$(document).ready(function () {
+  callback.init();
+});
 
 /***/ }),
 

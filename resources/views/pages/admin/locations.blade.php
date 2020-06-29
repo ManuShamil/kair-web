@@ -12,7 +12,8 @@
     }
 ?>
 
-@section('content')
+@section('content')]
+    @component('components.navbar') @endcomponent
     @component('components.admin.form')
         <h1> {{ $pageTitle }} </h1>
 
